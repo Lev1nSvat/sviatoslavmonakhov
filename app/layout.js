@@ -4,7 +4,9 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <head />
-      <body className="text-2xl">{children}</body>
+      <body className="overflow-hidden">
+          {children}
+      </body>
     </html>
   )
 }
