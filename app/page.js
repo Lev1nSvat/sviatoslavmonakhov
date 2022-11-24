@@ -25,7 +25,7 @@ export default function Home() {
       intro.set(q('#Sviatoslav'), {letterSpacing: "47vw", x:"8%", ease: "power4"} )
       intro.to(q('#Sviatoslav'), {letterSpacing: "-=47vw", x:"8%", ease: "power4", duration:0.8} )
       intro.set(q('#Sviatoslav'), {letterSpacing: "+=0vw", x:"+=0%", ease: "power4"} )
-      intro.to(q("#intro"), {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.8")
+      intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.8")
       intro.to(q("#gr1"), {attr:{offset: 1}}, "<")
       intro.set(q('#surname'), {visibility:'visible'})
       intro.fromTo(q("#surname"), {x: "100vw"}, {x: "-100vw", duration: 1.5,ease:"none"})
