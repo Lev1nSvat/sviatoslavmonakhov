@@ -5,7 +5,9 @@
 @tailwind utilities;
 
 @layer utilities {
-  
+  * {
+    scrollbar-width: none;
+  }
   .text-border {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #FEE3EC;

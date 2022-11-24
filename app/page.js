@@ -3,7 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import ram from '../public/ram.jpg';
 import { useEffect, useRef } from "react"
-import ScrollProxy from "../components/ScrollProxy"
+import  LocoProxy  from "../components/LocoProxy"
 import gsap from "gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
@@ -13,10 +13,9 @@ export default function Home() {
   const el = useRef()
   const q = gsap.utils.selector(el);
   useEffect(()=>{
-    
-    const intro = gsap.timeline({scrollTrigger: {scrub:true, pin:q('#intro'), end: 4000,}});
-    intro.set(q('#Sviatoslav'), {letterSpacing: "47vw", x:"8%", ease: "power4"} )
-    //intro.set(q("#gr1"), {attr:{offset:0}})
+    setTimeout(()=> {
+      const intro = gsap.timeline({scrollTrigger: {scrub:true, pin:q('#intro'), end: 4000,}});
+      intro.set(q('#Sviatoslav'), {letterSpacing: "47vw", x:"8%", ease: "power4"} )
       intro.to(q('#Sviatoslav'), {letterSpacing: "-=47vw", x:"8%", ease: "power4", duration:0.8} )
       intro.set(q('#Sviatoslav'), {letterSpacing: "+=0vw", x:"+=0%", ease: "power4"} )
       intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.7999")
@@ -58,10 +57,12 @@ export default function Home() {
       gsap.utils.toArray(q('.reveal')).forEach(el => {
         let reveal = gsap.from(el, {y: "+=400", scrollTrigger:{start:"-=400 bottom",end:"0", trigger:el, toggleActions:"play none none reset"}, duration:1.2})
       })  
-      gsap.set("body", {backgroundColor:"#222222"})
-      gsap.to(q("#Sviatoslav"), {opacity:1, duration:0.1},"<")
-      ScrollTrigger.refresh()
-
+    },10)
+      
+        gsap.set("body", {backgroundColor:"#222222"})
+        gsap.to(q("#Sviatoslav"), {opacity:1, duration:0.1},"<")
+        
+        
   })
   let speed
   let cash = 0;
@@ -81,7 +82,7 @@ export default function Home() {
   }
   return (
     <>
-      <div ref={el}>
+      <LocoProxy el={el}>
         <div id="intro" className=" font-regular min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center">
           <svg className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask  id="mask">
@@ -160,7 +161,7 @@ export default function Home() {
             </a></p>
           </div>
         </div>
-      </div>
+      </LocoProxy>
     </>
   )
 }
