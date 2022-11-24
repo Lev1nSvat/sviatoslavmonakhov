@@ -47,7 +47,7 @@ export default function Home() {
       main2.from(q('#about'), {top: "-=50%", ease:"none"})
 
       gsap.utils.toArray(q('.projects')).forEach(a => {
-        let hover = gsap.to(a, {backgroundImage: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)", paused: true, ease: "power2"});
+        let hover = gsap.fromTo(a, {backgroundImage: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, {backgroundImage: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)", paused: true, ease: "power2"});
         a.addEventListener("mouseenter", () => hover.play());
         a.addEventListener("mouseleave", () => hover.reverse());
       });
