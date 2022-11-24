@@ -10,8 +10,7 @@ export default function ScrollProxy({children, el, onScroll}) {
   useEffect(()=>{
     console.log('scrollInit')
       const scroll = new GScroll( "#scroll-section", 0.5, () => {ScrollTrigger.update();scroll.resize();onScroll()} )
-      scroll.init()
-      scroll.wheel()
+      setTimeout(()=>{scroll.init();scroll.wheel()}, 3000)
       const scroller = document.getElementById('scroll-section')
       ScrollTrigger.defaults({
         scroller: scroller
