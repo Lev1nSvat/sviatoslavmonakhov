@@ -13,20 +13,14 @@ export default function Home() {
   const el = useRef()
   const q = gsap.utils.selector(el);
   useEffect(()=>{
-    const loading = gsap.timeline()
-      loading.fromTo(q('#gr1'), {attr:{offset: "0.63"}}, {attr:{offset: 0.63 - window.innerWidth * 0.113 / window.innerHeight }, duration: 2.5, ease:"power1"})
-      loading.set(q('#gr'), {attr:{y1:0.5, y2:0.5,x1:1,x2:0}})
-      loading.set(q("#gr1"), {attr:{offset:0}})
-      loading.set("#scrollBlock", {display: "none", background: "red"})
-      loading.from(q('#scroll'), {y: "+=4vh", opacity: 0,ease:"power1"})
-      
-      const intro = gsap.timeline({scrollTrigger: {scrub:true, pin:q('#intro'), end: 4000,}});
-      intro.set(q("#gr1"), {attr:{offset:0}})
-      intro.set(q('#Sviatoslav'), {letterSpacing: "47vw", x:"8%", ease: "power4"} )
+    
+    const intro = gsap.timeline({scrollTrigger: {scrub:true, pin:q('#intro'), end: 4000,}});
+    intro.set(q('#Sviatoslav'), {letterSpacing: "47vw", x:"8%", ease: "power4"} )
+    //intro.set(q("#gr1"), {attr:{offset:0}})
       intro.to(q('#Sviatoslav'), {letterSpacing: "-=47vw", x:"8%", ease: "power4", duration:0.8} )
       intro.set(q('#Sviatoslav'), {letterSpacing: "+=0vw", x:"+=0%", ease: "power4"} )
-      intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.8")
-      intro.to(q("#gr1"), {attr:{offset: 1}}, "<")
+      intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.7999")
+      intro.fromTo(q("#gr1"),{attr:{offset:0}}, {attr:{offset: 1}}, "<")
       intro.set(q('#surname'), {visibility:'visible'})
       intro.fromTo(q("#surname"), {x: "100vw"}, {x: "-100vw", duration: 1.5,ease:"none"})
       intro.set(q("#scroll"), {display: "none"}, "<")
@@ -36,6 +30,12 @@ export default function Home() {
       intro.to(q(".name"), { strokeDasharray: "0% 100%", strokeDashoffset: "50%", duration:2}, ">-1.2")
       intro.to(q("#dev"), { strokeDasharray: "100% 0%", strokeDashoffset: "50%", duration:2}, ">-1")
       intro.set(q(".dev"), { display: "block"}, "<")
+    
+      const loading = gsap.timeline()
+      loading.fromTo(q('#gr1'), {attr:{offset: "0.63"}}, {attr:{offset: 0.63 - window.innerWidth * 0.113 / window.innerHeight }, duration: 2.5, ease:"power1"})
+      loading.set(q('#gr'), {attr:{y1:0.5, y2:0.5,x1:1,x2:0}})
+      loading.set(q("#gr1"), {attr:{offset:0}})
+      loading.from(q('#scroll'), {y: "+=4vh", opacity: 0,ease:"power1"})
       
       const paralax = gsap.timeline({scrollTrigger: {scrub: true, start: "top bottom", end: "bottom top", trigger: q('#main')}});
       paralax.to(q('#dev'), {y: "+=1100", ease: "none"})
