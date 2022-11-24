@@ -48,8 +48,9 @@ export default function Home() {
 
       gsap.utils.toArray(q('.projects')).forEach(a => {
         let hover = gsap.fromTo(a, {backgroundImage: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, {backgroundImage: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)", paused: true, ease: "power2"});
-        a.addEventListener("mouseenter", () => hover.play());
-        a.addEventListener("mouseleave", () => hover.reverse());
+        let hover1 = gsap.to(a, {backgroundImage: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)", paused: true, ease: "power2"});
+        a.addEventListener("mouseenter", () => {hover.play();hover1.play()});
+        a.addEventListener("mouseleave", () => {hover.reverse();;hover1.reverse()});
       });
       gsap.utils.toArray(q('.skewElem')).forEach(el => {
         gsap.set(el, {transformOrigin: "left center"})
