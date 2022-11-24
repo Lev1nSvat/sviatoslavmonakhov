@@ -81,7 +81,7 @@ export default function Home() {
   }
   return (
     <>
-      <ScrollProxy el={el} onScroll={onScroll}>
+      <div ref={el}>
         <div id="intro" className=" font-regular min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center">
           <svg className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask  id="mask">
@@ -160,7 +160,7 @@ export default function Home() {
             </a></p>
           </div>
         </div>
-      </ScrollProxy>
+      </div>
     </>
   )
 }

@@ -5,9 +5,7 @@
 @tailwind utilities;
 
 @layer utilities {
-  * {
-    overflow: hidden !important;
-  }
+  
   .text-border {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #FEE3EC;
