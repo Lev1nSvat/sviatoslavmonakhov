@@ -59,7 +59,7 @@ export default function Home() {
       })  
       gsap.set("body", {backgroundColor:"#222222"})
       gsap.to(q("#Sviatoslav"), {opacity:1, duration:0.1},"<")
-      const element = document.querySelector("#scroll-section");
+      ScrollTrigger.refresh()
 
   })
   let speed
@@ -103,7 +103,7 @@ export default function Home() {
             <defs>
               <linearGradient id="gr" x1="0.5" y1="0" x2="0.5" y2="1">
                 <stop id="gr1" offset="0" stopColor="#222222"/>
-                <stop  offset="0" stopColor="#FEE3EC"/>
+                <stop id="gr1" offset="0" stopColor="#FEE3EC"/>
               </linearGradient>
             </defs>
           </svg>
