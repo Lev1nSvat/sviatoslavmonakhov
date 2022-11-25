@@ -6,6 +6,9 @@
 @layer utilities {
   * {
     scrollbar-width: none;
+    
+  }
+  .paytone {
     font-family: 'Paytone One', sans;
   }
   .text-border {

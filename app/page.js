@@ -93,10 +93,10 @@ export default function Home() {
       
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-50"></div>
       <LocoProxy el={el}>
-        <div id="intro" className={ paytoneOne.className + " min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
+        <div id="intro" className={ paytoneOne.className + " paytone min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
           <svg id="svg" className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask  id="mask">
-              <text id="Sviatoslav" className={ paytoneOne.className + " relative opacity-0 text-[16vw] translate-y-[63vh] translate-x-[10vw] h-[16vw] w-[100vw]"} fill="white"  stroke="#FEE3EC">
+              <text id="Sviatoslav" className={ paytoneOne.className + " paytone relative opacity-0 text-[16vw] translate-y-[63vh] translate-x-[10vw] h-[16vw] w-[100vw]"} fill="white"  stroke="#FEE3EC">
                 <tspan className="">Sviatoslav</tspan>
               </text>
             </mask>
@@ -121,7 +121,7 @@ export default function Home() {
           </svg>
           <p id="scroll" className="text-carousel-pink-500 text-[2vw] absolute translate-y-[40vh]">scroll</p>
         </div>
-        <div id="main" className={ paytoneOne.className + " bg-carousel-pink-500 -z-10 relative min-h-[250vh] flex justify-between items-center"}>
+        <div id="main" className={ paytoneOne.className + " paytone bg-carousel-pink-500 -z-10 relative min-h-[250vh] flex justify-between items-center"}>
           <div className="skewElem z-20 absolute pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
 
             <p className="my-32 lg:my-56  h-[17vw] lg:[8vw] projects text-gr w-fit">
@@ -157,7 +157,7 @@ export default function Home() {
           </div>
         </div>
         <div id="main2" className="relative z-30 bg-shark-500 overflow-hidden">
-          <p id="about" className={paytoneOne.className + " text-[80vw] lg:text-[33vw] origin-top-left translate-y-[110%] -translate-x-[14%] -rotate-90 w-fit absolute opacity-20 lg:opacity-100 text-carousel-pink-500"}>About</p>
+          <p id="about" className={paytoneOne.className + " paytone text-[80vw] lg:text-[33vw] origin-top-left translate-y-[110%] -translate-x-[14%] -rotate-90 w-fit absolute opacity-20 lg:opacity-100 text-carousel-pink-500"}>About</p>
           <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-2xl lg:text-5xl py-[30vh] skewElem px-[10vw] text-carousel-pink-500">
             <p className="reveal py-8" >Hi, I'm Sviatoslav Monakhov, Interactive UI/UX developer.</p>
             <p className="reveal py-8" >I'm currently offerring my expertise to agencies and creative teams.</p>
