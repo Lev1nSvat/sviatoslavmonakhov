@@ -3,7 +3,6 @@ import gsap from "gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 import { useEffect } from "react"
-import dynamic from 'next/dynamic'
 import LocomotiveModule from "locomotive-scroll"
 
 export default function LocoProxy({children, el}) {
