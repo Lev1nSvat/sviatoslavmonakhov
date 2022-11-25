@@ -27,7 +27,6 @@ export default function CustomCursor() {
       //(cashPosition.clientX - event.clientX < 0 && cashPosition.clientY - event.clientY < 0) || (cashPosition.clientX - event.clientX > 0 && cashPosition.clientY - event.clientY > 0) ? rotation = rotation : rotation += 90
       cashPosition.clientX = event.clientX; cashPosition.clientY = event.clientY;
       deformCursor(speed, rotation) 
-      console.log(rotation)
     }
     function deformCursor(speed, rotation) {
       Math.round(rotation)
@@ -36,7 +35,7 @@ export default function CustomCursor() {
       speed>3 ? speed = 3 :
       gsap.set(".cursor", {rotate:rotation, duration:0.2})
       gsap.to("#circle", {scaleY:speed,scaleX:1/speed, duration:0.1, onComplete:()=>{gsap.to("#circle", {scaleY:1,scaleX:1})}})
-      gsap.to("#pointer", {scaleY:speed*2,scaleX:1/speed/2, duration:0.1, onComplete:()=>{gsap.to("#pointer", {scaleY:1,scaleX:1})}})
+      gsap.to("#pointer", {scaleY:speed*1.5,scaleX:1/speed/1.5, duration:0.1, onComplete:()=>{gsap.to("#pointer", {scaleY:1,scaleX:1})}})
     }
     function moveCircle(event)  { gsap.to("#circle", {x:event.clientX, y:event.clientY, duration:0.5, ease:"power1"}); }
     window.addEventListener("mousemove", (event)=> movePointer(event))
