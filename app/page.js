@@ -69,7 +69,7 @@ export default function Home() {
         gsap.to(q("#Sviatoslav"), {opacity:1, duration:0.1},"<")
 
      ScrollTrigger.refresh()
-    },100)   
+    },1000)   
   })
   let speed
   let cash = 0;
