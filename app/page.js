@@ -1,18 +1,18 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import ram from '../public/ram.jpg';
-import { useEffect, useRef } from "react"
-import gsap from "gsap"
-import ScrollTrigger from "gsap/dist/ScrollTrigger"
-gsap.registerPlugin(ScrollTrigger)
 import {Paytone_One} from "@next/font/google"
 const paytoneOne = Paytone_One({
   weight: '400',
   subsets: ['normal'],
 })
+import { useEffect, useRef } from "react"
+import gsap from "gsap"
+import ScrollTrigger from "gsap/dist/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 import LocoProxy from "../components/LocoProxy";
-
+import CustomCursor from "../components/CustomCursor";
+import ram from '../public/ram.jpg';
 
 
 export default function Home() {
@@ -91,7 +91,8 @@ export default function Home() {
   return (
     <>
       
-      <div id="scrollBlock" className="h-[100vh] w-full absolute z-50"></div>
+      <div id="scrollBlock" className="h-[100vh] w-full absolute z-40"></div>
+      <CustomCursor />
       <LocoProxy el={el}>
         <div id="intro" className={ paytoneOne.className + " paytone min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
           <svg id="svg" className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,16 +125,16 @@ export default function Home() {
         <div id="main" className={ paytoneOne.className + " paytone bg-carousel-pink-500 -z-10 relative min-h-[250vh] flex justify-between items-center"}>
           <div className="skewElem z-20 absolute pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
 
-            <p className="my-32 lg:my-56  h-[17vw] lg:[8vw] projects text-gr w-fit">
-              <Link href={"/"}>
+            <p className=" my-32 lg:my-56  h-[17vw] lg:[8vw] projects text-gr w-fit">
+              <Link className="magic-hover cursor-none" href={"/"}>
                 Project1
               </Link>
             </p>
-            <p className="my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
-              <Link href={"/"}>Project1</Link>
+            <p className=" my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
+              <Link className="magic-hover cursor-none" href={"/"}>Project1</Link>
             </p>
-            <p className="my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
-              <Link href={"/"}>Project1</Link>
+            <p className=" my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
+              <Link className="magic-hover cursor-none" href={"/"}>Project1</Link>
             </p>
           </div>
           <div className="skewElemSlow opacity-20 pl-32 mt-6 lg:mt-16 text-[12vw] absolute lg:relative lg:text-[6vw]">
@@ -164,10 +165,10 @@ export default function Home() {
             <p className="reveal py-8" >My love for challenge, makes me seek it in my work every day. Achieving today what wasn't possible for me yestarday is my passion. I hope I will find a team which will provide great oportunity to do so.</p>
             <p className="reveal py-8" >I'm a developer with taste for design, polished animation and big typography :)</p>
             <p className="reveal pt-56" >Feel free to say hello:</p>
-            <p className="reveal pb-4 magic-hover" ><a href="mailto:sviatoslavmonakhov@gmail.com">sviatoslavmonakhov@gmail.com</a></p>
+            <p className="reveal pb-4 magic-hover" ><a className="cursor-none" href="mailto:sviatoslavmonakhov@gmail.com">sviatoslavmonakhov@gmail.com</a></p>
             <p className="reveal h-3  bg-carousel-pink-500" ></p>
-            <p id="id11" className="reveal pt-6 flex justify-end" ><a href="https://github.com/Lev1nSvat">  
-              <svg className="magic-hover fill-carousel-pink-500 h-16 w-16" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" height="32px" ><path d="M 16 4 C 9.371094 4 4 9.371094 4 16 C 4 21.300781 7.4375 25.800781 12.207031 27.386719 C 12.808594 27.496094 13.027344 27.128906 13.027344 26.808594 C 13.027344 26.523438 13.015625 25.769531 13.011719 24.769531 C 9.671875 25.492188 8.96875 23.160156 8.96875 23.160156 C 8.421875 21.773438 7.636719 21.402344 7.636719 21.402344 C 6.546875 20.660156 7.71875 20.675781 7.71875 20.675781 C 8.921875 20.761719 9.554688 21.910156 9.554688 21.910156 C 10.625 23.746094 12.363281 23.214844 13.046875 22.910156 C 13.15625 22.132813 13.46875 21.605469 13.808594 21.304688 C 11.144531 21.003906 8.34375 19.972656 8.34375 15.375 C 8.34375 14.0625 8.8125 12.992188 9.578125 12.152344 C 9.457031 11.851563 9.042969 10.628906 9.695313 8.976563 C 9.695313 8.976563 10.703125 8.65625 12.996094 10.207031 C 13.953125 9.941406 14.980469 9.808594 16 9.804688 C 17.019531 9.808594 18.046875 9.941406 19.003906 10.207031 C 21.296875 8.65625 22.300781 8.976563 22.300781 8.976563 C 22.957031 10.628906 22.546875 11.851563 22.421875 12.152344 C 23.191406 12.992188 23.652344 14.0625 23.652344 15.375 C 23.652344 19.984375 20.847656 20.996094 18.175781 21.296875 C 18.605469 21.664063 18.988281 22.398438 18.988281 23.515625 C 18.988281 25.121094 18.976563 26.414063 18.976563 26.808594 C 18.976563 27.128906 19.191406 27.503906 19.800781 27.386719 C 24.566406 25.796875 28 21.300781 28 16 C 28 9.371094 22.628906 4 16 4 Z"/></svg>
+            <p id="id11" className="reveal pt-6 flex justify-end" ><a className="cursor-none magic-hover" href="https://github.com/Lev1nSvat">  
+              <svg className=" fill-carousel-pink-500 h-16 w-16" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" height="32px" ><path d="M 16 4 C 9.371094 4 4 9.371094 4 16 C 4 21.300781 7.4375 25.800781 12.207031 27.386719 C 12.808594 27.496094 13.027344 27.128906 13.027344 26.808594 C 13.027344 26.523438 13.015625 25.769531 13.011719 24.769531 C 9.671875 25.492188 8.96875 23.160156 8.96875 23.160156 C 8.421875 21.773438 7.636719 21.402344 7.636719 21.402344 C 6.546875 20.660156 7.71875 20.675781 7.71875 20.675781 C 8.921875 20.761719 9.554688 21.910156 9.554688 21.910156 C 10.625 23.746094 12.363281 23.214844 13.046875 22.910156 C 13.15625 22.132813 13.46875 21.605469 13.808594 21.304688 C 11.144531 21.003906 8.34375 19.972656 8.34375 15.375 C 8.34375 14.0625 8.8125 12.992188 9.578125 12.152344 C 9.457031 11.851563 9.042969 10.628906 9.695313 8.976563 C 9.695313 8.976563 10.703125 8.65625 12.996094 10.207031 C 13.953125 9.941406 14.980469 9.808594 16 9.804688 C 17.019531 9.808594 18.046875 9.941406 19.003906 10.207031 C 21.296875 8.65625 22.300781 8.976563 22.300781 8.976563 C 22.957031 10.628906 22.546875 11.851563 22.421875 12.152344 C 23.191406 12.992188 23.652344 14.0625 23.652344 15.375 C 23.652344 19.984375 20.847656 20.996094 18.175781 21.296875 C 18.605469 21.664063 18.988281 22.398438 18.988281 23.515625 C 18.988281 25.121094 18.976563 26.414063 18.976563 26.808594 C 18.976563 27.128906 19.191406 27.503906 19.800781 27.386719 C 24.566406 25.796875 28 21.300781 28 16 C 28 9.371094 22.628906 4 16 4 Z"/></svg>
             </a></p>
           </div>
         </div>
