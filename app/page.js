@@ -12,7 +12,8 @@ const paytoneOne = Paytone_One({
   weight: '400',
   subsets: ['normal'],
 })
-const isSSR = () => typeof window === "undefined"; 
+
+
 export default function Home() {
   const el = useRef()
   const q = gsap.utils.selector(el);
@@ -84,7 +85,7 @@ export default function Home() {
     gsap.to(".skewElem", {skewY: speed*0.2})
     
   }
-  return !isSSR()&&(
+  return (
     <>
       
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-50"></div>
