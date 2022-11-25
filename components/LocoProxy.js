@@ -4,12 +4,12 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 import { useEffect } from "react"
 import dynamic from 'next/dynamic'
+import LocomotiveScroll from "locomotive-scroll"
 
 export default function LocoProxy({children, el}) {
   useEffect(()=>{ 
     // --- SETUP START ---
 // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
-const LocomotiveScroll = dynamic(() => {import("locomotive-scroll").then(()=>{
   const locoScroll = new LocomotiveScroll({
     el: document.querySelector(".smooth-scroll"),
     smooth: true,
@@ -41,12 +41,6 @@ const LocomotiveScroll = dynamic(() => {import("locomotive-scroll").then(()=>{
   
   // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
   ScrollTrigger.refresh();
-})}, {
-  ssr: false,
-})
-
-
-
 
   })
   return (

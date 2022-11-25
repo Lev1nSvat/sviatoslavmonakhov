@@ -12,7 +12,7 @@ const paytoneOne = Paytone_One({
   weight: '400',
   subsets: ['normal'],
 })
-
+const isSSR = () => typeof window === "undefined"; 
 export default function Home() {
   const el = useRef()
   const q = gsap.utils.selector(el);
@@ -24,7 +24,7 @@ export default function Home() {
       intro.from(q('#Sviatoslav'), {letterSpacing: "47vw",attr:{x:"35%"}, left:500, ease: "power4", duration:0.8} , '<')
       intro.fromTo(q("#gr1"),{attr:{offset:0}}, {attr:{offset: 1}}, "<")
       intro.set(q('#surname'), {visibility:'visible'})
-      intro.fromTo(q("#surname"), {attr:{x: "70%"}}, {attr:{x:"-130%"}, duration: 1.5,ease:"none"})
+      intro.fromTo(q("#surname"), {attr:{x: "100%"}}, {attr:{x:"-130%"}, duration: 1.5,ease:"none"})
       intro.set(q("#scroll"), {display: "none"}, "<")
       intro.to(q("#intro"), {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<0.75")
       intro.set(q("#Sviatoslav"), {display: "none"}, ">")
@@ -84,7 +84,7 @@ export default function Home() {
     gsap.to(".skewElem", {skewY: speed*0.2})
     
   }
-  return (
+  return !isSSR()&&(
     <>
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-50"></div>
       <LocoProxy el={el}>
