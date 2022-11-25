@@ -79,7 +79,7 @@ export default function Home() {
   let speed
   let cash = 0;
   function onScroll() {
-    let position = document.querySelector("#scroll-section").getBoundingClientRect().top
+    //let position = document.querySelector("#scroll-section").getBoundingClientRect().top
     speed = cash - position
     if (speed < -50) {
       speed = -50
