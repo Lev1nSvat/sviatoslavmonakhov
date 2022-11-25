@@ -4,13 +4,14 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 import { useEffect } from "react"
 import dynamic from 'next/dynamic'
-import LocomotiveScroll from "locomotive-scroll"
+import LocomotiveModule from "locomotive-scroll"
 
 export default function LocoProxy({children, el}) {
   useEffect(()=>{ 
+    
     // --- SETUP START ---
 // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
-  const locoScroll = new LocomotiveScroll({
+  const locoScroll = new LocomotiveModule({
     el: document.querySelector(".smooth-scroll"),
     smooth: true,
     smartphone:{smooth:true},

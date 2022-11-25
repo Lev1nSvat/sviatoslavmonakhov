@@ -86,7 +86,7 @@ export default function Home() {
   }
   return !isSSR()&&(
     <>
-      <NonSSRWrapper>
+      
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-50"></div>
       <LocoProxy el={el}>
         <div id="intro" className={ paytoneOne.className + " min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
@@ -168,7 +168,7 @@ export default function Home() {
           </div>
         </div>
       </LocoProxy>
-      </NonSSRWrapper>
+      
     </>
   )
 }
