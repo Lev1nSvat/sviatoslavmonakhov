@@ -3238,7 +3238,6 @@ var Native = /*#__PURE__*/function () {
     smartphone:{smooth:true},
     tablet:{smooth:true},
   })
-  console.log(locoScroll)
   // each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
   locoScroll.on("scroll", ScrollTrigger.update);
   

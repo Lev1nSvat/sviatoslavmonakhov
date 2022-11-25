@@ -13,7 +13,6 @@ const paytoneOne = Paytone_One({
 })
 import LocoProxy from "../components/LocoProxy";
 
-const SSR = typeof window === 'undefined'
 
 
 export default function Home() {
@@ -21,7 +20,6 @@ export default function Home() {
   const q = gsap.utils.selector(el);
   useEffect(()=>{
     setTimeout(()=> {
-      console.log(paytoneOne)
     const q = gsap.utils.selector(el);
       const intro = gsap.timeline({scrollTrigger: {scrub:true, pin:q('#intro'), end: 4000,}});
       intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.7999")
