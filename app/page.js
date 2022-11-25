@@ -14,9 +14,11 @@ const paytoneOne = Paytone_One({
 const isSSR = (typeof(window) === "undefined")
 import dynamic from 'next/dynamic'
 
-const LocoProxy = dynamic(() => import("../components/LocoProxy"), {
-  ssr: false,
-})
+if (!isSSR) {
+  const LocoProxy = dynamic(() => import("../components/LocoProxy"), {
+    ssr: false,
+  })
+}
 
 
 export default function Home() {
@@ -79,7 +81,7 @@ export default function Home() {
   let speed
   let cash = 0;
   function onScroll() {
-    //let position = document.querySelector("#scroll-section").getBoundingClientRect().top
+    let position = document.querySelector("#scroll-section").getBoundingClientRect().top
     speed = cash - position
     if (speed < -50) {
       speed = -50
@@ -96,7 +98,7 @@ export default function Home() {
     <>
       
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-50"></div>
-      <LocoProxy el={el}>
+      
         <div id="intro" className={ paytoneOne.className + " min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
           <svg id="svg" className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask  id="mask">
@@ -175,7 +177,7 @@ export default function Home() {
             </a></p>
           </div>
         </div>
-      </LocoProxy>
+      
       
     </>
   )
