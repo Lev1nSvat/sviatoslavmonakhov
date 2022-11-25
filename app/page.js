@@ -13,6 +13,7 @@ const paytoneOne = Paytone_One({
 })
 import LocoProxy from "../components/LocoProxy";
 
+const SSR = typeof window === 'undefined'
 
 
 export default function Home() {
