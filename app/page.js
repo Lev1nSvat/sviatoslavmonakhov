@@ -12,7 +12,14 @@ const paytoneOne = Paytone_One({
   weight: '400',
   subsets: ['normal'],
 })
-
+import dynamic from 'next/dynamic' 
+import React from 'react'
+const NonSSRWrapper = props => ( 
+    <React.Fragment>{props.children}</React.Fragment> 
+) 
+dynamic(() => Promise.resolve(NonSSRWrapper), { 
+    ssr: false 
+})
 export default function Home() {
   const el = useRef()
   const q = gsap.utils.selector(el);
@@ -86,6 +93,7 @@ export default function Home() {
   }
   return (
     <>
+      <NonSSRWrapper>
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-50"></div>
       <LocoProxy el={el}>
         <div id="intro" className={ paytoneOne.className + " min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
@@ -167,6 +175,7 @@ export default function Home() {
           </div>
         </div>
       </LocoProxy>
+      </NonSSRWrapper>
     </>
   )
 }
