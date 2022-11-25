@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +6,7 @@
 @layer utilities {
   * {
     scrollbar-width: none;
-    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: 'Paytone One', sans;
   }
   .text-border {
     -webkit-text-stroke-width: 1px;
