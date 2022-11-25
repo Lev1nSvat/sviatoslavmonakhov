@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,9 +9,6 @@
   .text-border {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #FEE3EC;
-  }
-  .font-regular {
-    font-family: 'Paytone One', sans-serif;
   }
   .bg-gr {
     background: linear-gradient(to right, #222222 100%, #FEE3EC 100%);
@@ -27,8 +22,4 @@
     -webkit-text-stroke: 1px #222222;
   }
   
-  @font-face{
-    font-family: 'Font-regular';
-    src: url("../public/cocogoose-pro.regular.ttf");
-  }
 }

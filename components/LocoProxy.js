@@ -6,8 +6,8 @@ import { useEffect } from "react"
 import LocomotiveScroll from "locomotive-scroll"
 
 
-export default function LocoProxy({children, el, onScroll,onLoad}) {
-  useEffect(()=>{
+export default function LocoProxy({children, el}) {
+  useEffect(()=>{ 
     // --- SETUP START ---
 // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
 const locoScroll = new LocomotiveScroll({
@@ -15,7 +15,8 @@ const locoScroll = new LocomotiveScroll({
   smooth: true,
   smartphone:{smooth:true},
   tablet:{smooth:true},
-});
+})
+console.log(locoScroll)
 // each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
 locoScroll.on("scroll", ScrollTrigger.update);
 
@@ -34,12 +35,14 @@ ScrollTrigger.scrollerProxy(".smooth-scroll", {
 // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
 ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 ScrollTrigger.defaults({ scroller: ".smooth-scroll" });
-// --- SETUP END ---
 
+// --- SETUP END ---
 
 
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 ScrollTrigger.refresh();
+
+
 
   })
   return (
