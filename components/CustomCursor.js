@@ -46,7 +46,7 @@ export default function CustomCursor() {
       a.addEventListener('mouseenter',()=> {
         controller.abort();
         gsap.to(".translate-half", {yPercent:0,xPercent:0});
-        gsap.to("#circle", {y:(a.getBoundingClientRect().y - 5),x:(a.getBoundingClientRect().x - 5),width: (a.offsetWidth + 10), height:(a.offsetHeight + 10), borderRadius: 35})
+        gsap.to("#circle", {y:(a.getBoundingClientRect().y - 5),x:(a.getBoundingClientRect().x - 5),width: (a.offsetWidth + 10), height:(a.offsetHeight + 10), borderRadius: 35,rotate:0, ease:"power3"})
         updateInterval = setInterval(()=>{ 
           gsap.to("#circle", {y:(a.getBoundingClientRect().y - 5),duration: 0.4 })
         }, 1)
@@ -56,7 +56,10 @@ export default function CustomCursor() {
         clearInterval(updateInterval);
         gsap.to(".translate-half", {yPercent:-50,xPercent:-50});
         window.addEventListener("mousemove", (event)=> moveCircle(event), {signal: controller.signal});
-        gsap.to("#circle", {width:"72", height:"72",borderRadius: 36}); moveCircle(cashPosition)})
+        gsap.from("#circle", {rotate:0})
+        gsap.to("#circle", {width:"72", height:"72",borderRadius: 36});
+        moveCircle(cashPosition)
+      })
     })
     gsap.utils.toArray('#circle').forEach(a => {
       let hover = gsap.to(a, {width:"72", height:"72" , paused: true, ease: "power2", duration:0.4});

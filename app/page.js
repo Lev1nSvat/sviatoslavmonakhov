@@ -68,7 +68,7 @@ export default function Home() {
         gsap.set("body", {backgroundColor:"#222222"})
         gsap.to(q("#Sviatoslav"), {opacity:1, duration:0.1},"<")
 
-     
+     ScrollTrigger.refresh()
     },100)   
   })
   let speed
