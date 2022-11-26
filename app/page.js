@@ -127,16 +127,16 @@ export default function Home() {
         <div id="main" className={ paytoneOne.className + " paytone bg-carousel-pink-500 -z-10 relative min-h-[250vh] flex justify-between items-center"}>
           <div className="skewElem z-20 absolute pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
 
-            <p className=" my-32 lg:my-56  h-[17vw] lg:[8vw] projects text-gr w-fit">
-              <Link className="magic-hover cursor-none" href={"/"}>
+            <p className=" my-32 lg:my-56  h-[17vw] lg:[8vw]  w-fit">
+              <Link className="magic-hover cursor-none projects text-gr" href={"/"}>
                 Project1
               </Link>
             </p>
-            <p className=" my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
-              <Link className="magic-hover cursor-none" href={"/"}>Project1</Link>
+            <p className=" my-32 lg:my-56 h-[17vw] lg:[8vw] w-fit ">
+              <Link className="magic-hover cursor-none projects text-gr" href={"/"}>Project1</Link>
             </p>
             <p className=" my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
-              <Link className="magic-hover cursor-none" href={"/"}>Project1</Link>
+              <Link className="magic-hover cursor-none projects text-gr" href={"/"}>Project1</Link>
             </p>
           </div>
           <div className="skewElemSlow opacity-20 pl-32 mt-6 lg:mt-16 text-[12vw] absolute lg:relative lg:text-[6vw]">

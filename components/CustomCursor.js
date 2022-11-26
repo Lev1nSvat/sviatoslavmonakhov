@@ -10,7 +10,7 @@ export default function CustomCursor() {
     let cashPosition = {}
     let speed
     let rotation
-    let yDif, xDif
+    let allowDeform = true
     gsap.set(".translate-half", {yPercent:-50,xPercent:-50})
     document.body.style.cursor = 'none';
     gsap.utils.toArray('.cursor').forEach(a => {
@@ -24,7 +24,6 @@ export default function CustomCursor() {
       cashPosition.clientX&&(speed = Math.abs(cashPosition.clientX - event.clientX) + Math.abs(cashPosition.clientY - event.clientY))
       cashPosition.clientX&&(rotation = 90 * ( (cashPosition.clientX - event.clientX) / ( Math.abs(cashPosition.clientX - event.clientX) + Math.abs(cashPosition.clientY - event.clientY) )));
       cashPosition.clientY - event.clientY >0 ? rotation = -rotation : 0
-      //(cashPosition.clientX - event.clientX < 0 && cashPosition.clientY - event.clientY < 0) || (cashPosition.clientX - event.clientX > 0 && cashPosition.clientY - event.clientY > 0) ? rotation = rotation : rotation += 90
       cashPosition.clientX = event.clientX; cashPosition.clientY = event.clientY;
       deformCursor(speed, rotation) 
     }
@@ -33,9 +32,11 @@ export default function CustomCursor() {
       speed*=0.03;
       speed<1 ? speed = 1 :
       speed>3 ? speed = 3 :
-      gsap.set(".cursor", {rotate:rotation, duration:0.2})
-      gsap.to("#circle", {scaleY:speed,scaleX:1/speed, duration:0.1, onComplete:()=>{gsap.to("#circle", {scaleY:1,scaleX:1})}})
-      gsap.to("#pointer", {scaleY:speed*1.5,scaleX:1/speed/1.5, duration:0.1, onComplete:()=>{gsap.to("#pointer", {scaleY:1,scaleX:1})}})
+      allowDeform&&gsap.set(".cursor", {rotate:rotation, duration:0.2})
+      allowDeform&&gsap.to("#circle", {scaleY:speed,scaleX:1/speed, duration:0.1, onComplete:()=>{gsap.to("#circle", {scaleY:1,scaleX:1})}})
+      speed *=speed*speed
+      speed>3 ? speed = 3 :
+      gsap.to("#pointer", {scaleY:speed,scaleX:1/speed, duration:0.1, onComplete:()=>{gsap.to("#pointer", {scaleY:1,scaleX:1})}})
     }
     function moveCircle(event)  { gsap.to("#circle", {x:event.clientX, y:event.clientY, duration:0.5, ease:"power1"}); }
     window.addEventListener("mousemove", (event)=> movePointer(event))
@@ -44,6 +45,7 @@ export default function CustomCursor() {
     document.querySelectorAll(".magic-hover").forEach((a)=>{
       let updateInterval 
       a.addEventListener('mouseenter',()=> {
+        allowDeform = false
         controller.abort();
         gsap.to(".translate-half", {yPercent:0,xPercent:0});
         gsap.to("#circle", {y:(a.getBoundingClientRect().y - 5),x:(a.getBoundingClientRect().x - 5),width: (a.offsetWidth + 10), height:(a.offsetHeight + 10), borderRadius: 35,rotate:0, ease:"power3"})
@@ -52,11 +54,12 @@ export default function CustomCursor() {
         }, 1)
       })
       a.addEventListener('mouseleave',()=> {
+        setTimeout(()=>allowDeform = true, 300)
         controller = new AbortController();
         clearInterval(updateInterval);
         gsap.to(".translate-half", {yPercent:-50,xPercent:-50});
         window.addEventListener("mousemove", (event)=> moveCircle(event), {signal: controller.signal});
-        gsap.from("#circle", {rotate:0})
+        gsap.set("#circle", {rotate:0})
         gsap.to("#circle", {width:"72", height:"72",borderRadius: 36});
         moveCircle(cashPosition)
       })
