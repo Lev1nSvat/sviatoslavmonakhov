@@ -21,7 +21,7 @@ export default function Home() {
   useEffect(()=>{
     
     const q = gsap.utils.selector(el);
-      const intro = gsap.timeline({scrollTrigger: {scrub:true, pin:q('#intro'), end: 4000,}});
+      const intro = gsap.timeline({scrollTrigger: {scrub:0.9, pin:q('#intro'), end: 4000}});
       intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.7999")
       intro.from(q('#Sviatoslav'), {letterSpacing: "47vw",attr:{x:"35%"}, left:500, ease: "power4", duration:0.8} , '<')
       intro.fromTo(q("#gr1"),{attr:{offset:0}}, {attr:{offset: 1}}, "<")
@@ -42,13 +42,13 @@ export default function Home() {
       loading.from(q('#scroll'), {y: "+=4vh", opacity: 0,ease:"power1"})
       loading.set('#scrollBlock', {display:"none"}, "<")
       
-      const paralax = gsap.timeline({scrollTrigger: {scrub: true, start: "top bottom", end: "bottom top", trigger: q('#main')}});
+      const paralax = gsap.timeline({scrollTrigger: {scrub:true, start: "top bottom", end: "bottom top", trigger: q('#main')}});
       paralax.to(q('#dev'), {y: "+=1100", ease: "none"})
       
       const main = gsap.timeline({scrollTrigger: {scrub:true, start:"top bottom", end:"bottom top", trigger:q('#main')}})
       main.to(q('#image'), {y:"+=270vh", ease:"none"})
 
-      const main2 = gsap.timeline({scrollTrigger: {scrub:true, start:"top bottom", end:"bottom bottom", trigger:q('#main2'), pin:q('#about')}})
+      const main2 = gsap.timeline({scrollTrigger: {scrub:2.5, start:"top bottom", end:"bottom bottom", trigger:q('#main2'), pin:q('#about')}})
       main2.from(q('#about'), {top: "-=50%", ease:"none"})
 
       gsap.utils.toArray(q('.projects')).forEach(a => {
