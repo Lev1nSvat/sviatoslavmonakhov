@@ -1,11 +1,11 @@
 "use client"
 import gsap from "gsap"
-import ScrollTrigger from "gsap/dist/ScrollTrigger"
-gsap.registerPlugin(ScrollTrigger)
+//import ScrollTrigger from "gsap/dist/ScrollTrigger"
+//gsap.registerPlugin(ScrollTrigger)
 import { useEffect } from "react"
 
 
-export default function LocoProxy({children, el}) {
+export default function LocoProxy({children, el, gsap, ScrollTrigger}) {
   useEffect(()=>{ 
     const isSSR = () => typeof window === undefined; 
 /* locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */

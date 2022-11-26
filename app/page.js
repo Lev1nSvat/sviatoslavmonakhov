@@ -93,7 +93,7 @@ export default function Home() {
       
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-40"></div>
       <CustomCursor />
-      <div ref={el}>
+      <LocoProxy gsap={gsap} ScrollTrigger={ScrollTrigger} el={el}>
         <div id="intro" className={ paytoneOne.className + " paytone min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
           <svg id="svg" className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask  id="mask">
@@ -172,7 +172,7 @@ export default function Home() {
             </a></p>
           </div>
         </div>
-      </div>
+      </LocoProxy>
       
     </>
   )
