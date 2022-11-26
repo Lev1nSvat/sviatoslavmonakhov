@@ -70,8 +70,8 @@ export default function CustomCursor() {
   })
   return (
     <>
-      <div id="pointer" className="bg-blend-difference  pointer-events-none cursor rounded-lg opacity-0 h-3 w-3 absolute z-50 translate-x-[-50%] translate-y-[-50%] bg-carousel-pink-500 mix-blend-difference"></div>
-      <div id="circle" className="pointer-events-none cursor rounded-[36px] opacity-0 h-3 w-3 translate-half absolute z-50 border-carousel-pink-500 border-solid border-[2px] mix-blend-difference"></div>
+      <div id="pointer" className="bg-blend-difference  pointer-events-none cursor rounded-lg opacity-0 h-3 w-3 fixed z-50 translate-x-[-50%] translate-y-[-50%] bg-carousel-pink-500 mix-blend-difference"></div>
+      <div id="circle" className="pointer-events-none cursor rounded-[36px] opacity-0 h-3 w-3 translate-half fixed z-50 border-carousel-pink-500 border-solid border-[2px] mix-blend-difference"></div>
     </>
   )
 }
