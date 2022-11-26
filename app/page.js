@@ -12,6 +12,7 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 import LocoProxy from "../components/LocoProxy";
 import CustomCursor from "../components/CustomCursor";
+import GsapFollowCursor from "../components/GsapFollowCursor";
 import ram from '../public/ram.jpg';
 
 let speed
@@ -94,7 +95,7 @@ export default function Home() {
     <>
       
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-40"></div>
-      <CustomCursor />
+      <GsapFollowCursor gsap={gsap} />
       <LocoProxy gsap={gsap} ScrollTrigger={ScrollTrigger} el={el}>
         <div id="intro" className={ paytoneOne.className + " paytone min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
           <svg id="svg" className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
