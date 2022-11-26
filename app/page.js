@@ -14,6 +14,8 @@ import LocoProxy from "../components/LocoProxy";
 import CustomCursor from "../components/CustomCursor";
 import ram from '../public/ram.jpg';
 
+let speed
+let cash = 0;
 
 export default function Home() {
   const el = useRef()
@@ -21,21 +23,21 @@ export default function Home() {
   useEffect(()=>{
     
     const q = gsap.utils.selector(el);
-      const intro = gsap.timeline({scrollTrigger: {scrub:0.9, pin:q('#intro'), end: 4000}});
-      intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.7999")
-      intro.from(q('#Sviatoslav'), {letterSpacing: "47vw",attr:{x:"35%"}, left:500, ease: "power4", duration:0.8} , '<')
-      intro.fromTo(q("#gr1"),{attr:{offset:0}}, {attr:{offset: 1}}, "<")
-      intro.set(q('#surname'), {visibility:'visible'})
-      intro.fromTo(q("#surname"), {attr:{x: "100%"}}, {attr:{x:"-130%"}, duration: 1.5,ease:"none"})
-      intro.set(q("#scroll"), {display: "none"}, "<")
-      intro.to(q("#intro"), {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<0.75")
-      intro.set(q("#Sviatoslav"), {display: "none"}, ">")
-      intro.set(q(".name"), {display: "block"}, ">")
-      intro.to(q(".name"), { strokeDasharray: "0% 100%", strokeDashoffset: "50%", duration:2}, ">-1.2")
-      intro.to(q("#dev"), { strokeDasharray: "100% 0%", strokeDashoffset: "50%", duration:2}, ">-1")
-      intro.set(q(".dev"), { display: "block"}, "<")
-
-      const loading = gsap.timeline()
+    const intro = gsap.timeline({scrollTrigger: {scrub:0.9, pin:q('#intro'), end: 4000}});
+    intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.7999")
+    intro.from(q('#Sviatoslav'), {letterSpacing: "47vw",attr:{x:"35%"}, left:500, ease: "power4", duration:0.8} , '<')
+    intro.fromTo(q("#gr1"),{attr:{offset:0}}, {attr:{offset: 1}}, "<")
+    intro.set(q('#surname'), {visibility:'visible'})
+    intro.fromTo(q("#surname"), {attr:{x: "100%"}}, {attr:{x:"-130%"}, duration: 1.5,ease:"none"})
+    intro.set(q("#scroll"), {display: "none"}, "<")
+    intro.to(q("#intro"), {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<0.75")
+    intro.set(q("#Sviatoslav"), {display: "none"}, ">")
+    intro.set(q(".name"), {display: "block"}, ">")
+    intro.to(q(".name"), { strokeDasharray: "0% 100%", strokeDashoffset: "50%", duration:2}, ">-1.2")
+    intro.to(q("#dev"), { strokeDasharray: "100% 0%", strokeDashoffset: "50%", duration:2}, ">-1")
+    intro.set(q(".dev"), { display: "block"}, "<")
+    
+    const loading = gsap.timeline()
       loading.fromTo(q('#gr1'), {attr:{offset: "0.63"}}, {attr:{offset: 0.63 - window.innerWidth * 0.113 / window.innerHeight }, duration: 2.5, ease:"power1"})
       loading.set(q('#gr'), {attr:{y1:0.5, y2:0.5,x1:1,x2:0}})
       loading.set(q("#gr1"), {attr:{offset:0}})
@@ -47,10 +49,10 @@ export default function Home() {
       
       const main = gsap.timeline({scrollTrigger: {scrub:true, start:"top bottom", end:"bottom top", trigger:q('#main')}})
       main.to(q('#image'), {y:"+=270vh", ease:"none"})
-
+      
       const main2 = gsap.timeline({scrollTrigger: {scrub:2.5, start:"top bottom", end:"bottom bottom", trigger:q('#main2'), pin:q('#about')}})
       main2.from(q('#about'), {top: "-=50%", ease:"none"})
-
+      
       gsap.utils.toArray(q('.projects')).forEach(a => {
         let hover = gsap.fromTo(a, {backgroundImage: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, {backgroundImage: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)", paused: true, ease: "power2"});
         let hover1 = gsap.to(a, {backgroundImage: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)", paused: true, ease: "power2"});
@@ -63,30 +65,30 @@ export default function Home() {
       gsap.utils.toArray(q('.reveal')).forEach(el => {
         let reveal = gsap.from(el, {y: "+=400", scrollTrigger:{start:"-=400 bottom",end:"0", trigger:el, toggleActions:"play none none reset"}, duration:1.2})
       })  
-    
       
-        gsap.set("body", {backgroundColor:"#222222"})
-        gsap.to(q("#Sviatoslav"), {opacity:1, duration:0.1},"<")
-
-     ScrollTrigger.refresh()
-       
+      
+      gsap.set("body", {backgroundColor:"#222222"})
+      gsap.to(q("#Sviatoslav"), {opacity:1, duration:0.1},"<")
+      
+      ScrollTrigger.refresh()
+      setInterval(()=>{
+        let position = document.querySelector("#scroll-section").getBoundingClientRect().top
+        speed = cash - position
+        if (speed < -50) {
+          speed = -50
+        }
+        if (speed > 50) {
+          speed = 50
+        }
+        cash = position
+        gsap.to(".skewElem", {skewY: speed*0.2}) 
+        
+      },10)
+      
+      
+      
+      
   })
-  let speed
-  let cash = 0;
-  function onScroll() {
-    let position = document.querySelector("#scroll-section").getBoundingClientRect().top
-    speed = cash - position
-    if (speed < -50) {
-      speed = -50
-    }
-    if (speed > 50) {
-      speed = 50
-    }
-    cash = position
-    console.log(speed)
-    gsap.to(".skewElem", {skewY: speed*0.2})
-    
-  }
   
   return (
     <>
