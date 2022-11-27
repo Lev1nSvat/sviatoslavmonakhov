@@ -6,7 +6,6 @@ import gsap from "gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 import LocoProxy from "../components/LocoProxy";
-import CustomCursor from "../components/CustomCursor";
 import GsapFollowCursor from "../components/GsapFollowCursor";
 import ram from '../public/ram.jpg';
 
@@ -17,24 +16,21 @@ export default function Home() {
   const el = useRef()
   const q = gsap.utils.selector(el);
   useEffect(()=>{
-    ScrollTrigger.defaults({scroller:el.current})
-
-    const q = gsap.utils.selector(el);
-    const intro = gsap.timeline({scrollTrigger: {scrub:0.9, pin:q('#intro'),start:0, end: 4000}});
-    intro.fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.8")
-    intro.fromTo("body",{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<")
-    intro.from(q('#Sviatoslav'), {letterSpacing: "47vw",attr:{x:"35%"}, left:500, ease: "power4", duration:0.8} , '<')
-    intro.fromTo(q("#gr1"),{attr:{offset:0}}, {attr:{offset: 1}}, "<")
-    intro.set(q('#surname'), {visibility:'visible'})
-    intro.fromTo(q("#surname"), {attr:{x: "100%"}}, {attr:{x:"-130%"}, duration: 1.5,ease:"none"})
-    intro.set(q("#scroll"), {display: "none"}, "<")
-    intro.to(q("#intro"), {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<0.75")
-    intro.to("body", {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<")
-    intro.set(q("#Sviatoslav"), {display: "none"}, ">")
-    intro.set(q(".name"), {display: "block"}, ">")
-    intro.to(q(".name"), { strokeDasharray: "0% 100%", strokeDashoffset: "50%", duration:2}, ">-1.2")
-    intro.to(q("#dev"), { strokeDasharray: "100% 0%", strokeDashoffset: "50%", duration:2}, ">-1")
-    intro.set(q(".dev"), { display: "block"}, "<")
+    const intro = gsap.timeline({scrollTrigger: {scrub:0.9, pin:q('#intro'),start:0, end: 4000}})
+      .fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.8")
+      .fromTo("body",{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<")
+      .from(q('#Sviatoslav'), {letterSpacing: "47vw",attr:{x:"35%"}, left:500, ease: "power4", duration:0.8} , '<')
+      .fromTo(q("#gr1"),{attr:{offset:0}}, {attr:{offset: 1}}, "<")
+      .set(q('#surname'), {visibility:'visible'})
+      .fromTo(q("#surname"), {attr:{x: "100%"}}, {attr:{x:"-130%"}, duration: 1.5,ease:"none"})
+      .set(q("#scroll"), {display: "none"}, "<")
+      .to(q("#intro"), {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<0.75")
+      .to("body", {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<")
+      .set(q("#Sviatoslav"), {display: "none"}, ">")
+      .set(q(".name"), {display: "block"}, ">")
+      .to(q(".name"), { strokeDasharray: "0% 100%", strokeDashoffset: "50%", duration:2}, ">-1.2")
+      .to(q("#dev"), { strokeDasharray: "100% 0%", strokeDashoffset: "50%", duration:2}, ">-1")
+      .set(q(".dev"), { display: "block"}, "<")
     
     const loading = gsap.timeline()
       loading.fromTo(q('#gr1'), {attr:{offset: "0.63"}}, {attr:{offset: 0.63 - window.innerWidth * 0.113 / window.innerHeight }, duration: 2.5, ease:"power1"})
