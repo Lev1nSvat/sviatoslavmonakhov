@@ -24,7 +24,8 @@ export default function CustomCursor() {
       cashPosition.clientX&&(speed = Math.abs(cashPosition.clientX - event.clientX) + Math.abs(cashPosition.clientY - event.clientY))
       cashPosition.clientX&&(rotation = 90 * ( (cashPosition.clientX - event.clientX) / ( Math.abs(cashPosition.clientX - event.clientX) + Math.abs(cashPosition.clientY - event.clientY) )));
       cashPosition.clientY - event.clientY >0 ? rotation = -rotation : 0
-      cashPosition.clientX = event.clientX; cashPosition.clientY = event.clientY;
+      cashPosition.clientX = event.clientX;
+      cashPosition.clientY = event.clientY;
       deformCursor(speed, rotation) 
     }
     function deformCursor(speed, rotation) {
