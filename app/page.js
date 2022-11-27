@@ -67,7 +67,6 @@ export default function Home() {
       ScrollTrigger.refresh()
       setInterval(()=>{
         let position = el.current.getBoundingClientRect().top
-        let position = el.current.getBoundingClientRect().top
         speed = cash - position
         if (speed < -50) {
           speed = -50
