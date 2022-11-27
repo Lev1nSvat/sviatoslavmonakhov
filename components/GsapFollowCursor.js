@@ -69,7 +69,7 @@ export default function GsapFollowCursor({}) {
       }
     })
     
-    //approximatly calculate follower speed and direction
+    //approximatly calculate follower speed and direction and deform it accordingly
     let follower = document.querySelector("#follower"),followerSpeed, followerDirection, followerCash = {}, followerCurrent
     setInterval(()=> {
       followerCurrent = follower.getBoundingClientRect();
@@ -77,7 +77,6 @@ export default function GsapFollowCursor({}) {
       followerCurrent.y = ( followerCurrent.y + followerCurrent.height/2 )
       followerSpeed = Math.abs(followerCash.x - followerCurrent.x) + Math.abs(followerCash.y - followerCurrent.y)
       followerDirection = (((90 * (followerCash.x - followerCurrent.x) / (Math.abs(followerCash.x - followerCurrent.x) + Math.abs(followerCash.y - followerCurrent.y))))*((followerCash.y - followerCurrent.y)<=0 ? 1 : -1))+((followerCash.y - followerCurrent.y)<=0 ? 180 : 0)
-      //followerDirection = ((Math.round(90 * (followerCash.x - followerCurrent.x) / (Math.abs(followerCash.x - followerCurrent.x) + Math.abs(followerCash.y - followerCurrent.y))))*((followerCash.y - followerCurrent.y)<=0 ? 1 : -1))+((followerCash.y - followerCurrent.y)<=0 ? 180 : 0)
       followerCash.x = followerCurrent.x
       followerCash.y = followerCurrent.y
       deformFollower()
@@ -138,12 +137,11 @@ export default function GsapFollowCursor({}) {
     }
 
     function deformFollower() {
-      if(!rotatePause&&!isHover&&followerSpeed&&followerDirection) {
+      if(!rotatePause&&!isHover&&followerDirection&&followerSpeed) {
         followerSctretch(clampValue(1+followerSpeed*0.05 ));
         followerShrink(clampValue(1-followerSpeed*0.01));
         followerDirectionSetter(followerDirection);
-        speed > 100 ? speed = 100 : 
-        followerShadow("0 " + speed*0.05 + "px " + speed*0.4 + "px #FEE3EC")
+        followerShadow("0 " + followerSpeed*0.1 + "px " + followerSpeed*0.5 + "px #FEE3EC")
       }
     }
   })
