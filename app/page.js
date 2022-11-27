@@ -13,8 +13,10 @@ let speed
 let cash = 0;
 
 export default function Home() {
+
   const el = useRef()
-  const q = gsap.utils.selector(el);
+  const q = gsap.utils.selector(el)
+
   useEffect(()=>{
     const intro = gsap.timeline({scrollTrigger: {scrub:0.9, pin:q('#intro'),start:0, end: 4000}})
       .fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.8")
@@ -33,38 +35,43 @@ export default function Home() {
       .set(q(".dev"), { display: "block"}, "<")
     
     const loading = gsap.timeline()
-      loading.fromTo(q('#gr1'), {attr:{offset: "0.63"}}, {attr:{offset: 0.63 - window.innerWidth * 0.113 / window.innerHeight }, duration: 2.5, ease:"power1"})
-      loading.set(q('#gr'), {attr:{y1:0.5, y2:0.5,x1:1,x2:0}})
-      loading.set(q("#gr1"), {attr:{offset:0}})
-      loading.from(q('#scroll'), {y: "+=4vh", opacity: 0,ease:"power1"})
-      loading.set('#scrollBlock', {display:"none"}, "<")
+      .fromTo(q('#gr1'), {attr:{offset: "0.63"}}, {attr:{offset: 0.63 - window.innerWidth * 0.113 / window.innerHeight }, duration: 2.5, ease:"power1"})
+      .set(q('#gr'), {attr:{y1:0.5, y2:0.5,x1:1,x2:0}})
+      .set(q("#gr1"), {attr:{offset:0}})
+      .from(q('#scroll'), {y: "+=4vh", opacity: 0,ease:"power1"})
+      .set('#scrollBlock', {display:"none"}, "<")
       
-      const paralax = gsap.timeline({scrollTrigger: {scrub:true, start: "top bottom", end: "bottom top", trigger: q('#main')}});
-      paralax.to(q('#dev'), {y: "+=1100", ease: "none"})
+      const paralax = gsap.timeline({scrollTrigger: {scrub:true, start: "top bottom", end: "bottom top", trigger: q('#main')}})
+        .to(q('#dev'), {y: "+=1100", ease: "none"})
       
       const main = gsap.timeline({scrollTrigger: {scrub:true, start:"top bottom", end:"bottom top", trigger:q('#main')}})
-      main.to(q('#image'), {y:"+=270vh", ease:"none"})
+        .to(q('#image'), {y:"+=270vh", ease:"none"})
       
       const main2 = gsap.timeline({scrollTrigger: {scrub:2.5, start:"top bottom", end:"bottom bottom", trigger:q('#main2'), pin:q('#about')}})
-      main2.from(q('#about'), {top: "-=50%", ease:"none"})
+        .from(q('#about'), {top: "-=50%", ease:"none"})
       
+
       gsap.utils.toArray(q('.projects')).forEach(a => {
         let hover = gsap.fromTo(a, {backgroundImage: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, {backgroundImage: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)", paused: true, ease: "power2"});
-        let hover1 = gsap.to(a, {backgroundImage: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)", paused: true, ease: "power2"});
-        a.addEventListener("mouseenter", () => {hover.play();hover1.play()});
-        a.addEventListener("mouseleave", () => {hover.reverse();;hover1.reverse()});
+        a.addEventListener("mouseenter", () => hover.play());
+        a.addEventListener("mouseleave", () => hover.reverse());
       });
-      gsap.utils.toArray(q('.skewElem')).forEach(el => {
-        gsap.set(el, {transformOrigin: "left center"})
-      })  
+      
+      
       gsap.utils.toArray(q('.reveal')).forEach(el => {
         let reveal = gsap.from(el, {y: "+=400", scrollTrigger:{start:"-=400 bottom",end:"0", trigger:el, toggleActions:"play none none reset"}, duration:1.2})
       })  
       
       
-      gsap.set("body", {backgroundColor:"#222222"})
       gsap.to(q("#Sviatoslav"), {opacity:1, duration:0.1},"<")
+      
+      
       ScrollTrigger.refresh()
+      
+      //skew on scroll
+      gsap.utils.toArray(q('.skewElem')).forEach(el => {
+        gsap.set(el, {transformOrigin: "left center"})
+      })  
       setInterval(()=>{
         let position = el.current.getBoundingClientRect().top
         speed = cash - position
@@ -78,10 +85,6 @@ export default function Home() {
         gsap.to(".skewElem", {skewY: speed*0.2}) 
         
       },10)
-      
-      
-      
-      
   })
   
   return (
@@ -107,7 +110,6 @@ export default function Home() {
                 <tspan x="6%" y="40%" className="dev hidden">Interactive</tspan>
                 <tspan x="6%" y="70%" className="dev text-[15vw] hidden">Developer</tspan>
             </text>
-
             <defs>
               <linearGradient id="gr" x1="0.5" y1="0" x2="0.5" y2="1">
                 <stop id="gr1" offset="0" stopColor="#222222"/>
@@ -119,7 +121,6 @@ export default function Home() {
         </div>
         <div id="main" className={" paytone bg-carousel-pink-500 -z-10 relative min-h-[250vh] flex justify-between items-center"}>
           <div className="skewElem z-20 absolute pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
-
             <p className=" my-32 lg:my-56  h-[17vw] lg:[8vw]  w-fit">
               <Link className="magic-hover projects text-gr" href={"/"}>
                 Project1
