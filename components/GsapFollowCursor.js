@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react"
 import gsap from "gsap";
 import { isMobile } from "react-device-detect";
 
-export default function GsapFollowCursor({}) {
+export default function GsapFollowCursor({containerRef}) {
   let cursor = useRef();
   let q = gsap.utils.selector(cursor);
   useEffect(()=>{
@@ -17,8 +17,6 @@ export default function GsapFollowCursor({}) {
     pointerY = gsap.quickSetter(q("#pointer"), "y", "px"),
     followerX = gsap.quickTo(q("#follower"), "x", {ease: "power4", duration: 1}),
     followerY = gsap.quickTo(q("#follower"), "y", {ease: "power4", duration: 1}),
-    followerXFast = gsap.quickTo(q("#follower"), "x", {duration:0.1}),
-    followerYFast = gsap.quickTo(q("#follower"), "y", {duration:0.1}),
     followerYPercent = gsap.quickTo(q("#follower"), "yPercent", {ease: "power4", duration: 1}),
     followerXPercent = gsap.quickTo(q("#follower"), "xPercent", {ease: "power4", duration: 1}),
     pointerDirectionSetter = gsap.quickSetter(q("#pointer"), "rotation", "deg"),
@@ -30,12 +28,13 @@ export default function GsapFollowCursor({}) {
     pointerShrink = gsap.quickTo(q("#pointer"), "scaleX", {duration:0.1})
     
     //styling
-    gsap.set("body", {cursor:"none"})
-    gsap.set("a", {cursor:"none"})
     gsap.set(cursor.current, {position:"fixed", pointerEvents:"none", zIndex:9999})
     gsap.set(q("#pointer"), {position:"fixed", xPercent:-50, yPercent:-50,y:"100vh", opacity:0, width:12, height:12, borderRadius: 6, backgroundColor:"#FEE3EC", })
     gsap.set(q("#follower"), {position:"fixed", xPercent:-50, yPercent:-50,x:"50vw",y:"120vh", opacity:0, borderRadius: 36, borderWidth:2, borderColor:"#FEE3EC"})
     
+    removeNativeCursor(containerRef)
+    
+
     //reveal and hide cursor
     document.body.addEventListener("mouseover", () => {
       opacity(1);
@@ -81,7 +80,7 @@ export default function GsapFollowCursor({}) {
       followerCash.y = followerCurrent.y
       deformFollower()
     },10)
-
+    
     //hover effect
     document.querySelectorAll(".magic-hover").forEach((a)=>{
       let hoverUpdate
@@ -93,7 +92,7 @@ export default function GsapFollowCursor({}) {
         followerShrink(1);
         followerSctretch(1);
         followerShadow("none")
-
+        
         //check if adjustments are needed 
         hoverUpdate = setInterval(() => {
           targetRect = a.getBoundingClientRect()
@@ -103,7 +102,7 @@ export default function GsapFollowCursor({}) {
           followerY(targetRect.y);
         },10)
       })
-
+      
       a.addEventListener('mouseleave',()=> {
         isHover = false
         rotatePause = true 
@@ -118,24 +117,24 @@ export default function GsapFollowCursor({}) {
     })
     
     const clampValue = gsap.utils.clamp(0.5, 4)
-
+    
     function deformPointer() {
       
       if(speed) {
         pointerSctretch(clampValue(1+speed*0.03 ));
         pointerShrink(clampValue(1-speed*0.005));
-
+        
         //cleanup
         setTimeout(()=>{
           pointerSctretch(1);
           pointerShrink(1);
         },100)
       }
-
+      
       direction&&pointerDirectionSetter(direction);
       
     }
-
+    
     function deformFollower() {
       if(!rotatePause&&!isHover&&followerDirection&&followerSpeed) {
         followerSctretch(clampValue(1+followerSpeed*0.05 ));
@@ -144,11 +143,20 @@ export default function GsapFollowCursor({}) {
         followerShadow("0 " + followerSpeed*0.1 + "px " + followerSpeed*0.5 + "px #FEE3EC")
       }
     }
+
+    function removeNativeCursor(containerRef) {
+      if(!containerRef) {
+        containerRef ={current:document.body}
+      }
+      gsap.set(containerRef.current, {cursor:"none"})
+      gsap.set(gsap.utils.selector(containerRef)('*'), {cursor:"none"})
+    }
+
   })
   return (
-    <div style={{mixBlendMode:"difference"}} ref={cursor}>
-      <div className="cursor" id="pointer"></div>
-      <div className="cursor" id="follower"></div>
+    <div id="cursor" style={{mixBlendMode:"difference"}} ref={cursor}>
+      <div id="pointer"></div>
+      <div id="follower"></div>
     </div>
   )
 }
