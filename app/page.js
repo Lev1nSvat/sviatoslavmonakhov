@@ -18,6 +18,11 @@ export default function Home() {
   const q = gsap.utils.selector(el)
 
   useEffect(()=>{
+    gsap.set("c-scrollbar, .c-scrollbar_thumb", {display:"none"})
+
+    setTimeout(()=>gsap.fromTo('#scrollbar',{height:"0vh"}, {height:"100vh",ease:"linear", scrollTrigger:{scroller:el.current,scrub:true,start:"top top", end:"bottom bottom", trigger:el.current}}),3000)
+
+
     const intro = gsap.timeline({scrollTrigger: {scrub:0.9, pin:q('#intro'),start:0, end: 4000}})
       .fromTo(q("#intro"),{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<-0.8")
       .fromTo("body",{background: "linear-gradient(to right, #222222 100%, #FEE3EC 100%)"}, {background: "linear-gradient(to right, #222222 0%, #FEE3EC 0%)"}, "<")
@@ -51,8 +56,8 @@ export default function Home() {
       const main = gsap.timeline({scrollTrigger: {scrub:true, start:"top bottom", end:"bottom top", trigger:q('#main')}})
         .to(q('#image'), {y:"+=270vh", ease:"none"})
       
-      const main2 = gsap.timeline({scrollTrigger: {scrub:2.5, start:"top bottom", end:"bottom bottom", trigger:q('#main2'), pin:q('#about')}})
-        .from(q('#about'), {top: "-=50%", ease:"none"})
+      //const main2 = gsap.timeline({scrollTrigger: {scrub:true, start:"top bottom", end:"bottom bottom", trigger:q('#main2'), pin:q('#about')}})
+        //.from(q('#about'), {top:"-50vh"})
       
 
       gsap.utils.toArray(q('.projects')).forEach(a => {
@@ -85,7 +90,6 @@ export default function Home() {
         gsap.set(el, {transformOrigin: "right center"})
       })  
       setInterval(()=>{
-        console.log(st.getVelocity())        
         gsap.to(".skewElemRight", {skewY: -st.getVelocity()*0.002}) 
         gsap.to(".skewElemLeft", {skewY: st.getVelocity()*0.006}) 
         
@@ -97,6 +101,7 @@ export default function Home() {
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-40"></div>
       <GsapFollowCursor gsap={gsap} />
       <LocoProxy gsap={gsap} ScrollTrigger={ScrollTrigger} el={el}>
+      <div id="scrollbar" className="absolute z-10 bg-carousel-pink-500 mix-blend-difference h-0 w-2 pointer-events-none ml-[calc(100vw-4px)]"></div>
         <div id="intro" className={" paytone min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
           <svg id="svg" className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask  id="mask">
@@ -155,7 +160,7 @@ export default function Home() {
           </div>
         </div>
         <div id="main2" className="relative z-30 bg-shark-500 overflow-hidden">
-          <p id="about" className={" paytone text-[80vw] lg:text-[33vw] origin-top-left translate-y-[110%] -translate-x-[14%] -rotate-90 w-fit absolute opacity-20 lg:opacity-100 text-carousel-pink-500"}>About</p>
+          <p id="about" className=" paytone text-[80vw] lg:text-[33vw] origin-top-left -translate-x-[14%] -rotate-90 w-fit absolute opacity-20 lg:opacity-100 text-carousel-pink-500">About</p>
           <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-2xl lg:text-5xl py-[30vh] skewElemRight px-[10vw] text-carousel-pink-500">
             <p className="reveal py-8" >Hi, I'm Sviatoslav Monakhov, Interactive UI/UX developer.</p>
             <p className="reveal py-8" >I'm currently offerring my expertise to agencies and creative teams.</p>

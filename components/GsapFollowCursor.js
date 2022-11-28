@@ -20,9 +20,9 @@ export default function GsapFollowCursor({containerRef}) {
     followerYPercent = gsap.quickTo(q("#follower"), "yPercent", {ease: "power4", duration: 1}),
     followerXPercent = gsap.quickTo(q("#follower"), "xPercent", {ease: "power4", duration: 1}),
     pointerDirectionSetter = gsap.quickSetter(q("#pointer"), "rotation", "deg"),
-    followerDirectionChange = gsap.quickTo(q("#follower"), "rotation", {duration:0.02}),
-    followerSctretch = gsap.quickTo(q("#follower"), "scaleY", {duration:0.01,ease:"linear"}),
-    followerShrink = gsap.quickTo(q("#follower"), "scaleX", {duration:0.01,ease:"linear"}),
+    followerDirectionChange = gsap.quickTo(q("#follower"), "rotation", {duration:0.1, ease:"power4"}),
+    followerSctretch = gsap.quickTo(q("#follower"), "scaleY", {duration:0.1}),
+    followerShrink = gsap.quickTo(q("#follower"), "scaleX", {duration:0.1}),
     followerShadow = gsap.quickSetter(q("#follower"), "boxShadow", ""),
     pointerSctretch = gsap.quickTo(q("#pointer"), "scaleY", {duration:0.05}),
     pointerShrink = gsap.quickTo(q("#pointer"), "scaleX", {duration:0.05})
@@ -135,12 +135,13 @@ export default function GsapFollowCursor({containerRef}) {
       direction&&pointerDirectionSetter(direction);
 
     }
-    
+    let followerDirectionCashe = 0
     function deformFollower() {
       if(!isHover&&!deformPause&&followerSpeed) {
+        Math.abs(followerDirectionCashe-followerDirection) > 90 ? followerDirection&&followerDirectionChange(followerDirection, followerDirection) : followerDirection&&followerDirectionChange(followerDirection)
+        followerDirectionCashe = followerDirection
         followerSctretch(clampValue(1+followerSpeed*0.04 ));
         followerShrink(clampValue(1-followerSpeed*0.01));
-        followerDirection&&followerDirectionChange(followerDirection);
         followerSpeed = gsap.utils.clamp(0,50,followerSpeed)
         followerShadow("0 " + followerSpeed*0.3 + "px " + followerSpeed*0.3 + "px #FEE3EC")
       }
