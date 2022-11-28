@@ -73,20 +73,21 @@ export default function Home() {
       ScrollTrigger.refresh()
       
       //skew on scroll
-      gsap.utils.toArray(q('.skewElem')).forEach(el => {
+      let st = ScrollTrigger.create({
+        onUpdate: self => {
+          console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity());
+        }
+      });
+      gsap.utils.toArray(q('.skewElemLeft')).forEach(el => {
         gsap.set(el, {transformOrigin: "left center"})
       })  
+      gsap.utils.toArray(q('.skewElemRight')).forEach(el => {
+        gsap.set(el, {transformOrigin: "right center"})
+      })  
       setInterval(()=>{
-        let position = el.current.getBoundingClientRect().top
-        speed = cash - position
-        if (speed < -50) {
-          speed = -50
-        }
-        if (speed > 50) {
-          speed = 50
-        }
-        cash = position
-        gsap.to(".skewElem", {skewY: speed*0.2}) 
+        console.log(st.getVelocity())        
+        gsap.to(".skewElemRight", {skewY: -st.getVelocity()*0.002}) 
+        gsap.to(".skewElemLeft", {skewY: st.getVelocity()*0.006}) 
         
       },10)
   })
@@ -134,7 +135,7 @@ export default function Home() {
           <p id="scroll" className="text-carousel-pink-500 text-[2vw] absolute translate-y-[40vh]">scroll</p>
         </div>
         <div id="main" className={" paytone bg-carousel-pink-500 -z-10 relative min-h-[250vh] flex justify-between items-center"}>
-          <div className="skewElem z-20 absolute pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
+          <div className="skewElemLeft z-20 absolute pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
             <p className=" my-32 lg:my-56  h-[17vw] lg:[8vw]  w-fit">
               <Link className="magic-hover projects text-gr" href={"/"}>
                 Project1
@@ -147,20 +148,6 @@ export default function Home() {
               <Link className="magic-hover projects text-gr" href={"/"}>Project1</Link>
             </p>
           </div>
-          <div className="skewElemSlow opacity-20 pl-32 mt-6 lg:mt-16 text-[12vw] absolute lg:relative lg:text-[6vw]">
-
-            <p className="my-32 lg:my-56  h-[17vw] lg:[8vw] projects text-gr w-fit">
-              <Link href={"/"}>
-                Project1
-              </Link>
-            </p>
-            <p className="my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
-              <Link href={"/"}>Project1</Link>
-            </p>
-            <p className="my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
-              <Link href={"/"}>Project1</Link>
-            </p>
-          </div>
           <div id="image" className="self-start -translate-y-[30vh] lg:-translate-y-[70vh] lg:my-[10%] lg:mx-[10%] w-full lg:w-[80%]">
             <Image 
               src={ram}  
@@ -169,7 +156,7 @@ export default function Home() {
         </div>
         <div id="main2" className="relative z-30 bg-shark-500 overflow-hidden">
           <p id="about" className={" paytone text-[80vw] lg:text-[33vw] origin-top-left translate-y-[110%] -translate-x-[14%] -rotate-90 w-fit absolute opacity-20 lg:opacity-100 text-carousel-pink-500"}>About</p>
-          <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-2xl lg:text-5xl py-[30vh] skewElem px-[10vw] text-carousel-pink-500">
+          <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-2xl lg:text-5xl py-[30vh] skewElemRight px-[10vw] text-carousel-pink-500">
             <p className="reveal py-8" >Hi, I'm Sviatoslav Monakhov, Interactive UI/UX developer.</p>
             <p className="reveal py-8" >I'm currently offerring my expertise to agencies and creative teams.</p>
             <p className="reveal py-8" >My love for challenge, makes me seek it in my work every day. Achieving today what wasn't possible for me yestarday is my passion. I hope I will find a team which will provide great oportunity to do so.</p>
