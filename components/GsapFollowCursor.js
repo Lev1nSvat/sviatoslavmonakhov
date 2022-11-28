@@ -20,9 +20,9 @@ export default function GsapFollowCursor({containerRef}) {
     followerYPercent = gsap.quickTo(q("#follower"), "yPercent", {ease: "power4", duration: 1}),
     followerXPercent = gsap.quickTo(q("#follower"), "xPercent", {ease: "power4", duration: 1}),
     pointerDirectionSetter = gsap.quickSetter(q("#pointer"), "rotation", "deg"),
-    followerDirectionSetter = gsap.quickTo(q("#follower"), "rotation", {duration:0.01}),
-    followerSctretch = gsap.quickTo(q("#follower"), "scaleY", {duration:0.01}),
-    followerShrink = gsap.quickTo(q("#follower"), "scaleX", {duration:0.01}),
+    followerDirectionSetter = gsap.quickTo(q("#follower"), "rotation", {duration:0.0000001}),
+    followerSctretch = gsap.quickTo(q("#follower"), "scaleY", {duration:0.05,ease:"linear"}),
+    followerShrink = gsap.quickTo(q("#follower"), "scaleX", {duration:0.05,ease:"linear"}),
     followerShadow = gsap.quickSetter(q("#follower"), "boxShadow", ""),
     pointerSctretch = gsap.quickTo(q("#pointer"), "scaleY", {duration:0.1}),
     pointerShrink = gsap.quickTo(q("#pointer"), "scaleX", {duration:0.1})
@@ -140,6 +140,7 @@ export default function GsapFollowCursor({containerRef}) {
         followerSctretch(clampValue(1+followerSpeed*0.05 ));
         followerShrink(clampValue(1-followerSpeed*0.01));
         followerDirectionSetter(followerDirection);
+        followerSpeed = gsap.utils.clamp(-50,50,followerSpeed)
         followerShadow("0 " + followerSpeed*0.1 + "px " + followerSpeed*0.5 + "px #FEE3EC")
       }
     }
