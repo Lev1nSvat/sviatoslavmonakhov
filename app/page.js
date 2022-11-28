@@ -27,16 +27,20 @@ export default function Home() {
       .fromTo(q("#surname"), {attr:{x: "100%"}}, {attr:{x:"-130%"}, duration: 1.5,ease:"none"})
       .set(q("#scroll"), {display: "none"}, "<")
       .to(q("#intro"), {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<0.75")
+      .fromTo(q("#gr2"),{attr:{offset: 0}}, {attr:{offset: 1}, ease:"none", duration: 0.75}, "<")
       .to("body", {background: "linear-gradient(to left, #222222 200%, #FEE3EC 200%)", ease:"none", duration: 1.5}, "<")
-      .set(q("#Sviatoslav"), {display: "none"}, ">")
-      .set(q(".name"), {display: "block"}, ">")
-      .to(q(".name"), { strokeDasharray: "0% 100%", strokeDashoffset: "50%", duration:2}, ">-1.2")
+      .to(q("#Sviatoslav2"), { strokeDasharray: "0% 100%", strokeDashoffset: "50%", duration:2},">-1")
       .to(q("#dev"), { strokeDasharray: "100% 0%", strokeDashoffset: "50%", duration:2}, ">-1")
-      .set(q(".dev"), { display: "block"}, "<")
+      .set(q("#Sviatoslav"), {display:"none"},"<-0.8")
+      .set(q("#Sviatoslav2"), {opacity:1},"<-0.8")
+      .set(q(".dev"), { display: "block"}, "<-0.8")
     
     const loading = gsap.timeline()
       .fromTo(q('#gr1'), {attr:{offset: "0.63"}}, {attr:{offset: 0.63 - window.innerWidth * 0.113 / window.innerHeight }, duration: 2.5, ease:"power1"})
+      .fromTo(q('#gr2'), {attr:{offset: "0.63"}}, {attr:{offset: 0.63 - window.innerWidth * 0.113 / window.innerHeight }, duration: 2.5, ease:"power1"},"<")
       .set(q('#gr'), {attr:{y1:0.5, y2:0.5,x1:1,x2:0}})
+      .set(q('#grReverse'), {attr:{y1:0.5, y2:0.5,x1:1,x2:0}})
+      .set(q('#gr2'), {attr:{offset: "0"}})
       .set(q("#gr1"), {attr:{offset:0}})
       .from(q('#scroll'), {y: "+=4vh", opacity: 0,ease:"power1"})
       .set('#scrollBlock', {display:"none"}, "<")
@@ -95,14 +99,20 @@ export default function Home() {
         <div id="intro" className={" paytone min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
           <svg id="svg" className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask  id="mask">
-              <text id="Sviatoslav" className={" paytone relative opacity-0 text-[16vw] translate-y-[63vh] translate-x-[10vw] h-[16vw] w-[100vw]"} fill="white"  stroke="#FEE3EC">
+              <text id="Sviatoslav" className={" paytone relative opacity-0 text-[16vw] translate-y-[63vh] translate-x-[10vw] h-[16vw] w-[100vw]"} fill="white"  stroke="none">
                 <tspan className="">Sviatoslav</tspan>
               </text>
             </mask>
-            <rect width="100%" height="100%" className="" fill="url(#gr)" mask="url(#mask)"></rect>  
-            <text id="Sviatoslav" strokeDasharray="100% 0%"  strokeDashoffset="0%" className="relative opacity-0 translate-y-[63vh] translate-x-[10vw] name text-[16vw]" fill="none"  stroke="#FEE3EC">
+            <mask  id="mask2">
+              <text id="Sviatoslav" strokeDasharray="100% 0%"  strokeDashoffset="0%" className={" paytone relative opacity-0 text-[16vw] translate-y-[63vh] translate-x-[10vw] h-[16vw] w-[100vw]"} fill="none"  stroke="#FEE3EC">
+                <tspan className="">Sviatoslav</tspan>
+              </text>
+            </mask>
+            <text id="Sviatoslav2" strokeDasharray="100% 0%"  strokeDashoffset="0%" className=" paytone relative opacity-0 text-[16vw] translate-y-[63vh] translate-x-[10vw] h-[16vw] w-[100vw]" fill="none"  stroke="#FEE3EC">
                 <tspan className="">Sviatoslav</tspan>
             </text>
+            <rect width="100%" height="100%" fill="url(#gr)" mask="url(#mask)"></rect>  
+            <rect width="100%" height="100%" fill="url(#grReverse)" mask="url(#mask2)"></rect>  
             <text id="surname" className="fill-carousel-pink-500 invisible translate-y-[63vh] translate-x-[10vw] text-[16vw]" fill="none" stroke="#FEE3EC">
                 <tspan className="">Monakhov</tspan>
             </text>
@@ -114,6 +124,10 @@ export default function Home() {
               <linearGradient id="gr" x1="0.5" y1="0" x2="0.5" y2="1">
                 <stop id="gr1" offset="0" stopColor="#222222"/>
                 <stop id="gr1" offset="0" stopColor="#FEE3EC"/>
+              </linearGradient>
+              <linearGradient id="grReverse" x1="0.5" y1="0" x2="0.5" y2="1">
+                <stop id="gr2" offset="0" stopColor="#FEE3EC"/>
+                <stop id="gr2" offset="0" stopColor="transparent"/>
               </linearGradient>
             </defs>
           </svg>
