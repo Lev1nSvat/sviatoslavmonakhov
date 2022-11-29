@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(()=>{
     gsap.set("c-scrollbar, .c-scrollbar_thumb", {display:"none"})
 
-    setTimeout(()=>gsap.fromTo('#scrollbar',{height:"0vh"}, {height:"100vh",ease:"linear", scrollTrigger:{scroller:el.current,scrub:true,start:"top top", end:"bottom bottom", trigger:el.current}}),3000)
+    setTimeout(()=>gsap.fromTo('#scrollbar',{height:"0vh"}, {height:"100vh",ease:"linear", scrollTrigger:{scroller:el.current,scrub:true,start:"top top", end:"bottom bottom", trigger:el.current}}),2500)
 
 
     const intro = gsap.timeline({scrollTrigger: {scrub:0.9, pin:q('#intro'),start:0, end: 4000}})
@@ -56,8 +56,9 @@ export default function Home() {
       const main = gsap.timeline({scrollTrigger: {scrub:true, start:"top bottom", end:"bottom top", trigger:q('#main')}})
         .to(q('#image'), {y:"+=270vh", ease:"none"})
       
-      //const main2 = gsap.timeline({scrollTrigger: {scrub:true, start:"top bottom", end:"bottom bottom", trigger:q('#main2'), pin:q('#about')}})
-        //.from(q('#about'), {top:"-50vh"})
+      gsap.set(q("#about"), {rotate:-90, xPercent:-13})
+      const main2 = gsap.timeline({scrollTrigger: {scrub:5, start:"top bottom", end:"bottom bottom", trigger:q('#main2'),ease:"linear"}})
+        .to(q("#about"), {top:"100%",ease:"power1.inOut"})
       
 
       gsap.utils.toArray(q('.projects')).forEach(a => {
@@ -99,9 +100,9 @@ export default function Home() {
   return (
     <>
       <div id="scrollBlock" className="h-[100vh] w-full absolute z-40"></div>
+      <div id="scrollbar" className="fixed z-10 bg-carousel-pink-500 mix-blend-difference h-0 w-2 pointer-events-none ml-[calc(100vw-4px)]"></div>
       <GsapFollowCursor gsap={gsap} />
       <LocoProxy gsap={gsap} ScrollTrigger={ScrollTrigger} el={el}>
-      <div id="scrollbar" className="absolute z-10 bg-carousel-pink-500 mix-blend-difference h-0 w-2 pointer-events-none ml-[calc(100vw-4px)]"></div>
         <div id="intro" className={" paytone min-h-[100vh] bg-shark-500 bg-gr flex justify-center items-center"}>
           <svg id="svg" className="h-[100vh] w-[100vw] flex justify-center items-center" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask  id="mask">
@@ -159,9 +160,9 @@ export default function Home() {
             />
           </div>
         </div>
-        <div id="main2" className="relative z-30 bg-shark-500 overflow-hidden">
-          <p id="about" className=" paytone text-[80vw] lg:text-[33vw] origin-top-left -translate-x-[14%] -rotate-90 w-fit absolute opacity-20 lg:opacity-100 text-carousel-pink-500">About</p>
-          <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-2xl lg:text-5xl py-[30vh] skewElemRight px-[10vw] text-carousel-pink-500">
+        <div id="main2" className="relative z-30 overflow-clip bg-shark-500 ">
+          <p id="about" className="paytone text-[80vw] lg:text-[33vw] origin-top-left w-full absolute opacity-20 lg:opacity-100 text-carousel-pink-500">About</p>
+          <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-2xl lg:text-4xl xl:text-5xl py-[30vh] skewElemRight px-[10vw] text-carousel-pink-500">
             <p className="reveal py-8" >Hi, I'm Sviatoslav Monakhov, Interactive UI/UX developer.</p>
             <p className="reveal py-8" >I'm currently offerring my expertise to agencies and creative teams.</p>
             <p className="reveal py-8" >My love for challenge, makes me seek it in my work every day. Achieving today what wasn't possible for me yestarday is my passion. I hope I will find a team which will provide great oportunity to do so.</p>

@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 @layer utilities {
-  * {
-    scrollbar-width: none;
-    overflow: hidden;
-  }
   .paytone {
     font-family: 'Paytone One', sans;
   }
