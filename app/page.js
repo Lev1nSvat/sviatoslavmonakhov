@@ -141,7 +141,7 @@ export default function Home() {
           <p id="scroll" className="text-carousel-pink-500 text-[2vw] absolute translate-y-[40vh]">scroll</p>
         </div>
         <div id="main" className={" paytone bg-carousel-pink-500 -z-10 relative min-h-[250vh] flex justify-between items-center"}>
-          <div className="skewElemLeft z-20 absolute pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
+          <div className="skewElemLeft z-20 absolute lg:relative pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
             <p className=" my-32 lg:my-56  h-[17vw] lg:[8vw]  w-fit">
               <Link className="magic-hover projects text-gr" href={"/"}>
                 Project1
@@ -162,7 +162,7 @@ export default function Home() {
         </div>
         <div id="main2" className="relative z-30 overflow-clip bg-shark-500 ">
           <p id="about" className="paytone text-[80vw] lg:text-[33vw] origin-top-left w-full absolute opacity-20 lg:opacity-100 text-carousel-pink-500">About</p>
-          <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-2xl lg:text-4xl xl:text-5xl py-[30vh] skewElemRight px-[10vw] text-carousel-pink-500">
+          <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-[4.8vw] lg:text-4xl xl:text-5xl py-[30vh] skewElemRight px-[10vw] text-carousel-pink-500">
             <p className="reveal py-8" >Hi, I'm Sviatoslav Monakhov, Interactive UI/UX developer.</p>
             <p className="reveal py-8" >I'm currently offerring my expertise to agencies and creative teams.</p>
             <p className="reveal py-8" >My love for challenge, makes me seek it in my work every day. Achieving today what wasn't possible for me yestarday is my passion. I hope I will find a team which will provide great oportunity to do so.</p>
