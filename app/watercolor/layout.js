@@ -7,6 +7,7 @@ gsap.registerPlugin(PixiPlugin)
 PixiPlugin.registerPIXI(PIXI)
 
 export default function WatercolorLayout({children}) {
+  const PIXIGSAPcontext = React.createContext()
   useEffect(()=>{
     const app = new PIXI.Application({
       resizeTo: window,
@@ -15,11 +16,11 @@ export default function WatercolorLayout({children}) {
     gsap.ticker.add((time, deltaTime, frames)=>{
       app.ticker.update()
     })
-    const PIXIGSAPcontext = 
   })
   return (
-    <PIXIcontext.provider>
+    <PIXIGSAPcontext.Provider value={{PIXI: PIXI, gsap:gsap}}>
       {children}
-    </PIXIcontext.provider>
+    </PIXIGSAPcontext.Provider>
   )
 }
+export { PIXIGSAPcontext };
