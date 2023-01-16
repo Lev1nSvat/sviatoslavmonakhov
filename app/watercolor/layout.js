@@ -15,7 +15,6 @@ export default function WatercolorLayout({children}) {
       resizeTo: window,
     })    
     document.body.appendChild(app.view)
-    
     setApp(app)
   },[])
   return (
