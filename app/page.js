@@ -151,7 +151,7 @@ export default function Home() {
               <Link className="magic-hover projects text-gr" href={"/"}>In Development</Link>
             </p>
             <p className=" my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
-              <Link className="magic-hover projects text-gr" href={"/"}>sviatoslavmonakhov</Link>
+              <Link className="magic-hover projects text-gr" href={"/"}>SviatoslavMonakhov</Link>
             </p>
           </div>
           <div id="image" className="hidden self-start -translate-y-[30vh] lg:-translate-y-[70vh] lg:my-[10%] lg:mx-[10%] w-full lg:w-[80%]">
