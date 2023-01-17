@@ -144,17 +144,17 @@ export default function Home() {
           <div className="skewElemLeft z-20 absolute lg:relative pl-32 mt-6 lg:mt-16 text-[12vw] lg:text-[6vw]">
             <p className=" my-32 lg:my-56  h-[17vw] lg:[8vw]  w-fit">
               <Link className="magic-hover projects text-gr" href={"/"}>
-                Project1
+                In Development
               </Link>
             </p>
             <p className=" my-32 lg:my-56 h-[17vw] lg:[8vw] w-fit ">
-              <Link className="magic-hover projects text-gr" href={"/"}>Project1</Link>
+              <Link className="magic-hover projects text-gr" href={"/"}>In Development</Link>
             </p>
             <p className=" my-32 lg:my-56 h-[17vw] lg:[8vw] projects text-gr w-fit ">
-              <Link className="magic-hover projects text-gr" href={"/"}>Project1</Link>
+              <Link className="magic-hover projects text-gr" href={"/"}>sviatoslavmonakhov</Link>
             </p>
           </div>
-          <div id="image" className="self-start -translate-y-[30vh] lg:-translate-y-[70vh] lg:my-[10%] lg:mx-[10%] w-full lg:w-[80%]">
+          <div id="image" className="hidden self-start -translate-y-[30vh] lg:-translate-y-[70vh] lg:my-[10%] lg:mx-[10%] w-full lg:w-[80%]">
             <Image 
               src={ram}  
             />

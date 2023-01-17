@@ -1,4 +1,5 @@
 "use client"
+import "../../styles/pixiApp.css"
 import React, { useState } from 'react';
 import  { useEffect } from "react"
 import * as PIXI from 'pixi.js'
@@ -14,9 +15,6 @@ export default function WatercolorLayout({children}) {
       resizeTo: window,
     })    
     document.body.appendChild(app.view)
-    gsap.ticker.add((time, deltaTime, frames)=>{
-      app.ticker.update()
-    })
     setApp(app)
   },[])
   return (
