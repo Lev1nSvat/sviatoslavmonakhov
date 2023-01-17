@@ -1,7 +1,13 @@
 "use client"
+
+//pixi js imports
 import { PIXIGSAPcontext }  from "./layout.js"
-import { Sprite, Text, Texture, Graphics, Container } from 'pixi.js'
+import { Sprite, Text, Texture, Graphics, Container, Assets } from 'pixi.js'
+
+
 import { useContext, useEffect } from "react"
+
+//images imports
 import guasheLine2 from "../../public/guashe line 2.png"
 import heroBg from "../../public/min-hero-bg.png"
 import canvas from "../../public/out-canvas.png"
@@ -9,11 +15,15 @@ import titleBgGradient from "../../public/titleBgGradient.svg"
 import canvasMaskShadow from "../../public/canvasMaskShadow.svg"
 import watercolorSplash from "../../public/watercolor splash low contrast 3.png"
 import watercolorSplash0 from "../../public/watercolor splash.png"
+
+
 export default function WatercolorHome() {
   const {app, gsap} = useContext(PIXIGSAPcontext)
   useEffect(()=>{
     if (app) {
-      let bgScale
+      
+
+      //images into sprites 
       const heroBgSprite = Sprite.from(heroBg.src)
       const guasheLIne2Sprite = Sprite.from(guasheLine2.src)
       const titleBgGradientSprite = Sprite.from(titleBgGradient.src)
@@ -22,57 +32,67 @@ export default function WatercolorHome() {
       const canvasSprite2 = Sprite.from(canvas.src)
       const watercolorSplashSprite = Sprite.from(watercolorSplash.src)
       const watercolorSplashSprite2 = Sprite.from(watercolorSplash.src)
+      const watercolorSplashSprite0 = Sprite.from(watercolorSplash0.src)
       
+      //bg scale for positioning
+      let bgScale
+
+
+      //colored rectangles on whole screen
       const splashColor = new Graphics()
-      splashColor.beginFill(0xFFFF00);
-      splashColor.drawRect(0, 0, app.screen.width, app.screen.height)
-      splashColor.endFill();
-      splashColor.mask = watercolorSplashSprite
+      rectangleOnWholeScreen(splashColor, 0xFFFF00)
+
+      addColoredSlpash(watercolorSplash, 0xFFFF00).then((sprite) => {
+        sprite.anchor.set(0.5, 0.5)
+      })
+      
       
       const splashColor2 = new Graphics()
-      splashColor2.beginFill(0x925FFF);
-      splashColor2.drawRect(0, 0, app.screen.width, app.screen.height)
-      splashColor2.endFill();
-      splashColor2.mask = watercolorSplashSprite2
+      rectangleOnWholeScreen(splashColor2, 0x925FFF)
       
-
-      const watercolorSplashSprite0 = Sprite.from(watercolorSplash0.src)
       const splashColor3 = new Graphics()
-      splashColor3.beginFill(0x6A015A);
-      splashColor3.drawRect(0, 0, app.screen.width, app.screen.height)
-      splashColor3.endFill();
-      splashColor3.mask = watercolorSplashSprite0
+      rectangleOnWholeScreen(splashColor3, 0x6A015A)
+      
       
       canvasSprite2.mask = canvasMaskShadowSprite
       titleBgGradientSprite.mask = guasheLIne2Sprite
+
+
       const title = new Text("Watercolor", { 
         fontSize:(app.screen.width*0.09),
         fontFamily:"Permanent marker",
         fill:"white"
       })
+
       const scroll = new Text("Scroll", { 
-        fontSize:(app.screen.width*0.03),
+        fontSize:(app.screen.width*0.03+15),
         fontFamily:"Acme",
         fill:"white"
       })
+
+
       const text = new Container()
+      text.width = app.screen.widht;
+      text.height = app.screen.height;
+      text.pivot.x = text.width / 2;
+      text.pivot.y = text.height / 2;
       text.addChild(title)
       text.addChild(scroll)
-
-      const textSprite = Sprite.from(text.texture)
-      app.stage.addChild(watercolorSplashSprite0)
-      app.stage.addChild(canvasMaskShadowSprite)
-      app.stage.addChild(watercolorSplashSprite)
-      app.stage.addChild(watercolorSplashSprite2)
-      app.stage.addChild(guasheLIne2Sprite)
-      app.stage.addChild(heroBgSprite)
-      app.stage.addChild(splashColor)
-      app.stage.addChild(splashColor2)
-      app.stage.addChild(canvasSprite2)
-      app.stage.addChild(splashColor3)
-      app.stage.addChild(titleBgGradientSprite)
-      app.stage.addChild(textSprite)
-      //canvasSprite.mask = text
+      canvasSprite.mask = scroll, title
+      
+      
+      //app.stage.addChild(watercolorSplashSprite0)
+      //app.stage.addChild(canvasMaskShadowSprite)
+      //app.stage.addChild(watercolorSplashSprite)
+      //app.stage.addChild(watercolorSplashSprite2)
+      //app.stage.addChild(guasheLIne2Sprite)
+      //app.stage.addChild(heroBgSprite)
+      //app.stage.addChild(splashColor)
+      //app.stage.addChild(splashColor2)
+      //app.stage.addChild(canvasSprite2)
+      //app.stage.addChild(splashColor3)
+      //app.stage.addChild(titleBgGradientSprite)
+      //app.stage.addChild(text)
       //app.stage.addChild(canvasSprite)
       function resizeToCenter( sprite ) {
         sprite.anchor.set(0.5)
@@ -102,8 +122,12 @@ export default function WatercolorHome() {
           fontFamily:"Permanent marker",
           fill:"white"
         }
-        text.width = app.screen.width
-        text.height = app.screen.height
+        scroll.style = {
+          fontSize:(app.screen.width*0.03+15),
+          fontFamily:"Acme",
+          fill:"white"
+        }
+        
         splashColor.width = app.screen.width
         splashColor.height = app.screen.height
         splashColor2.widht = app.screen.width
@@ -126,8 +150,32 @@ export default function WatercolorHome() {
         canvasMaskShadowSprite.width = app.screen.width
         canvasMaskShadowSprite.height = app.screen.height
         app.ticker.update()
+
+        
       })
+      async function addColoredSlpash(mask, color) {
+        const texturePromise = Assets.load(mask.src)
+        return texturePromise.then((texture)=>{
+          const sprite = Sprite.from(texture)
+          const rect = new Graphics()
+          rectangleOnWholeScreen(rect, color).mask = sprite
+          app.stage.addChild(sprite)
+          app.stage.addChild(rect)
+          return sprite
+        })
+      }
+      function rectangleOnWholeScreen(graphicsObject, color) {
+        if(color) {
+          graphicsObject.beginFill(color);
+        }
+        graphicsObject.drawRect(0, 0, app.screen.width, app.screen.height)
+        if(color) {
+          graphicsObject.endFill();
+        }
+        return graphicsObject
+      }
     }
   }, [app])
   return(<></>)
 }
+
