@@ -164,8 +164,8 @@ export default function Home() {
           <p id="about" className="paytone text-[80vw] lg:text-[33vw] origin-top-left w-full absolute opacity-20 lg:opacity-100 text-carousel-pink-500">About</p>
           <div className="w-[90vw] lg:w-[75vw]  lg:ml-[30vw] text-[4.8vw] lg:text-4xl xl:text-5xl py-[30vh] skewElemRight px-[10vw] text-carousel-pink-500">
             <p className="reveal py-8" >Hi, I'm Sviatoslav Monakhov, Interactive UI/UX developer.</p>
-            <p className="reveal py-8" >I'm currently offerring my expertise to agencies and creative teams.</p>
-            <p className="reveal py-8" >My love for challenge, makes me seek it in my work every day. Achieving today what wasn't possible for me yestarday is my passion. I hope I will find a team which will provide great oportunity to do so.</p>
+            <p className="reveal py-8" >I'm currently offering my expertise to agencies and creative teams.</p>
+            <p className="reveal py-8" >My love for challenge, makes me seek it in my work every day. Achieving today what wasn't possible for me yesterday is my passion. I hope I will find a team which will provide great opportunity to do so.</p>
             <p className="reveal py-8" >I'm a developer with taste for design, polished animation and big typography :)</p>
             <p className="reveal pt-56" >Feel free to say hello:</p>
             <p className="reveal pb-4" ><a className="magic-hover" href="mailto:sviatoslavmonakhov@gmail.com">sviatoslavmonakhov@gmail.com</a></p>
