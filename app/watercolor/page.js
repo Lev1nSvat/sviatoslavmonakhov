@@ -96,9 +96,8 @@ export default function WatercolorHome() {
       async function addColoredSlpash(mask, color) {
         const texturePromise = Assets.load(mask.src)
         return texturePromise.then((texture)=>{
-          const sprite = Sprite.from(texture)          
-          const rect = new Graphics()
-          rectangleOnWholeScreen(rect, color).mask = sprite
+          const sprite = Sprite.from(texture)  
+          sprite.tint = color        
           app.stage.addChild(sprite)
           app.stage.addChild(rect)
           return sprite
