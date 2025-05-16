@@ -19,7 +19,7 @@ export default function WatercolorLayout({children}) {
   },[])
   return (
     <script src="https://jungheinrich.elma365.ru/web-forms/assets/widget.js"></script>
-    <script>document.Elma365WebForms.form("0196da9f-fa4f-758a-b125-13f1baa7e756"); </script>
+    <script>document.Elma365WebForms.form("0196da9f-fa4f-758a-b125-13f1baa7e756")</script>
     <PIXIGSAPcontext.Provider value={{app: app, gsap:gsap}}>
       {children}
     </PIXIGSAPcontext.Provider>
