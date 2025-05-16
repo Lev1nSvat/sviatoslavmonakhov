@@ -1,5 +1,5 @@
 "use client"
-
+/*
 //pixi js imports
 import { PIXIGSAPcontext }  from "./layout.js"
 import { Sprite, Text, Texture, Graphics, Container, Assets } from 'pixi.js'
@@ -16,9 +16,9 @@ import canvasMaskShadow from "../../public/canvasMaskShadow.svg"
 import watercolorSplash from "../../public/watercolor splash low contrast 3.png"
 import watercolorSplash0 from "../../public/watercolor splash.png"
 
-
+*/
 export default function WatercolorHome() {
-  const {app, gsap} = useContext(PIXIGSAPcontext)
+  /*const {app, gsap} = useContext(PIXIGSAPcontext)
   useEffect(()=>{
     if (app) {
       
@@ -176,6 +176,9 @@ export default function WatercolorHome() {
       }
     }
   }, [app])
-  return(<></>)
+  return(<></>) */
+  <script src="https://jungheinrich.elma365.ru/web-forms/assets/widget.js"></script>
+
+<script>document.Elma365WebForms.form("0196da9f-fa4f-758a-b125-13f1baa7e756"); </script>
 }
 
