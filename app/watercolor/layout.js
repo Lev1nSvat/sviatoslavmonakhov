@@ -1,6 +1,5 @@
 "use client"
 import "../../styles/pixiApp.css"
-import "https://jungheinrich.elma365.ru/web-forms/assets/widget.js"
 import React, { useState } from 'react';
 import  { useEffect } from "react"
 import * as PIXI from 'pixi.js'
@@ -12,7 +11,6 @@ PixiPlugin.registerPIXI(PIXI)
 export default function WatercolorLayout({children}) {
   const [app, setApp] = useState()
   useEffect(()=>{
-    document.Elma365WebForms.form("0196da9f-fa4f-758a-b125-13f1baa7e756");
     let app = new PIXI.Application({
      resizeTo: window,
     })    
@@ -20,8 +18,6 @@ export default function WatercolorLayout({children}) {
     setApp(app)
   },[])
   return (
-    //<script src="https://jungheinrich.elma365.ru/web-forms/assets/widget.js"></script>
-    
     <PIXIGSAPcontext.Provider value={{app: app, gsap:gsap}}>
       {children}
     </PIXIGSAPcontext.Provider>
